@@ -26,10 +26,6 @@
   color: var(--paper);
   font-family: var(--font-body);
   overflow-x: hidden;
-  /* Add margin to break out of global constraints if necessary */
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
 }
 
 /* ==========================================================================
@@ -388,8 +384,11 @@
   position: relative;
   z-index: 2;
   display: flex;
-  justify-content: center;
-  padding: 2.5rem 1.5rem 3rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  padding: 3rem 1.5rem 3.5rem;
+  border-top: 1px solid var(--panel-line);
 }
 
 .tva-stamp {
@@ -401,6 +400,63 @@
   padding: 0.6rem 1.2rem;
   border-radius: 2px;
   transform: rotate(-1deg);
+}
+
+/* Social row --------------------------------------------------- */
+.social-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.social-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  color: var(--paper-dim);
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--panel-line);
+  color: var(--paper-dim);
+  background: var(--panel);
+  transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.social-icon:hover {
+  color: var(--amber);
+  border-color: rgba(242, 169, 59, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px -10px rgba(242, 169, 59, 0.5);
+}
+
+.footer-disclaimer {
+  max-width: 480px;
+  margin: 0;
+  text-align: center;
+  font-size: 0.7rem;
+  line-height: 1.6;
+  color: rgba(237, 230, 214, 0.4);
+}
+
+@media (max-width: 640px) {
+  .social-icon {
+    width: 34px;
+    height: 34px;
+  }
 }
 
 /* ==========================================================================
