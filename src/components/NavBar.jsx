@@ -90,12 +90,6 @@ const NavBar = () => {
           alignItems: 'center',
           padding: '0.55rem 0.6rem 0.55rem 1.1rem',
           borderRadius: '999px',
-          border: '1px solid rgba(255,255,255,0.18)',
-          background: 'rgba(255,255,255,0.08)',
-          backdropFilter: 'blur(14px)',
-          WebkitBackdropFilter: 'blur(14px)',
-          boxShadow: '0 6px 20px -10px rgba(0,0,0,0.15)',
-          transition: 'box-shadow 0.25s ease',
         }}
       >
 
@@ -150,14 +144,10 @@ const NavBar = () => {
                 style={{
                   display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                   width: '36px', height: '36px', borderRadius: '50%', border: 'none',
-                  background: 'transparent', color: 'var(--text-light)', cursor: 'pointer',
-                  transition: 'background 0.2s ease, color 0.2s ease',
+                  background: 'transparent', color: '#FFFFFF', cursor: 'pointer',
                 }}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
               </button>
               <button
                 className="icon-btn"
@@ -166,8 +156,7 @@ const NavBar = () => {
                 style={{
                   display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                   width: '36px', height: '36px', borderRadius: '50%', border: 'none',
-                  background: 'transparent', color: 'var(--text-light)', cursor: 'pointer',
-                  transition: 'background 0.2s ease, color 0.2s ease',
+                  background: 'transparent', color: '#FFFFFF', cursor: 'pointer',
                 }}
               >
                 {isDark ? (
@@ -195,7 +184,7 @@ const NavBar = () => {
         {/* Search State */}
         {isSearchOpen && (
           <div style={{ display: 'flex', width: '100%', alignItems: 'center', gap: '0.75rem', padding: '0 0.3rem' }}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             <input
               ref={inputRef}
               type="text"
@@ -203,7 +192,7 @@ const NavBar = () => {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => { if (e.key === 'Escape') closeSearch(); }}
-              style={{ flex: 1, border: 'none', outline: 'none', background: 'transparent', fontFamily: 'var(--font-body)', fontSize: '1rem', color: 'var(--text-main)' }}
+              style={{ flex: 1, border: 'none', outline: 'none', background: 'transparent', fontFamily: 'var(--font-body)', fontSize: '1rem', color: '#FFFFFF' }}
             />
             <button
               onClick={closeSearch}
@@ -212,13 +201,10 @@ const NavBar = () => {
               style={{
                 display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                 width: '32px', height: '32px', borderRadius: '50%', border: 'none',
-                background: 'transparent', color: 'var(--text-light)', cursor: 'pointer',
+                background: 'transparent', color: '#FFFFFF', cursor: 'pointer',
               }}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <line x1="5" y1="5" x2="19" y2="19" />
-                <line x1="19" y1="5" x2="5" y2="19" />
-              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="5" y1="5" x2="19" y2="19" /><line x1="19" y1="5" x2="5" y2="19" /></svg>
             </button>
           </div>
         )}
@@ -237,12 +223,12 @@ const NavBar = () => {
               top: '100%',
               width: '100%',
               maxWidth: '680px',
-              background: 'rgba(255,255,255,0.1)',
-              backdropFilter: 'blur(14px)',
-              WebkitBackdropFilter: 'blur(14px)',
-              border: '1px solid rgba(255,255,255,0.18)',
+              background: 'rgba(10, 10, 10, 0.96)',
+              backdropFilter: 'blur(18px)',
+              WebkitBackdropFilter: 'blur(18px)',
+              border: '1px solid rgba(255,255,255,0.08)',
               borderRadius: '14px',
-              boxShadow: '0 14px 34px -12px rgba(0, 0, 0, 0.2)',
+              boxShadow: '0 20px 50px -12px rgba(0, 0, 0, 0.7)',
               overflow: 'hidden',
               maxHeight: '60vh',
               overflowY: 'auto',
@@ -250,7 +236,7 @@ const NavBar = () => {
             }}
           >
             {results.length === 0 ? (
-              <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+              <div style={{ padding: '2rem', textAlign: 'center', color: 'rgba(255,255,255,0.35)', fontSize: '0.9rem' }}>
                 No records found for "{query}".
               </div>
             ) : (
@@ -259,17 +245,17 @@ const NavBar = () => {
                   key={entry.id}
                   onClick={() => handleResultClick(entry.id)}
                   style={{
-                    padding: '1rem 1.5rem', borderBottom: index < results.length - 1 ? '1px solid var(--border-light)' : 'none',
+                    padding: '1rem 1.5rem', borderBottom: index < results.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer',
                     transition: 'background-color 0.15s'
                   }}
-                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.08)'}
+                  onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(192, 22, 28, 0.10)'}
                   onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                     <span className={`badge badge-${entry.type.toLowerCase()}`} style={{ fontSize: '0.6rem' }}>{entry.type}</span>
-                    <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: '1.1rem', color: 'var(--text-main)' }}>{entry.title}</span>
-                    <span style={{ color: 'var(--text-light)', fontSize: '0.85rem' }}>({entry.releaseYear})</span>
+                    <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: '1.1rem', color: '#FFFFFF' }}>{entry.title}</span>
+                    <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem' }}>({entry.releaseYear})</span>
                   </div>
                 </div>
               ))
