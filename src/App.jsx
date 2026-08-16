@@ -53,9 +53,7 @@ function App() {
         <div className="layout-container">
           <NavBar />
           <main className="content-area">
-            <div className="content-container">
-              <AnimatedRoutes />
-            </div>
+            <AnimatedRoutes />
           </main>
         </div>
       </BrowserRouter>

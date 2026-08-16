@@ -9,124 +9,112 @@ const Home = () => {
   
   const totalEntries = entries.length;
   const watchedCount = entries.filter(e => isWatched(e.id)).length;
+  const completionPercentage = Math.round((watchedCount / totalEntries) * 100) || 0;
   
-  // Get Phase 6 upcoming entries
-  const upcomingPhase6 = entries
-    .filter(e => e.phase === 6)
-    .sort((a, b) => a.releaseOrder - b.releaseOrder);
+  const upcomingEntries = entries
+    .filter(e => e.releaseYear >= 2025)
+    .sort((a, b) => a.releaseOrder - b.releaseOrder)
+    .slice(0, 5); // Take 5 for a nice horizontal row
 
   return (
     <PageTransition>
-      <div className="command-center-layout">
+      <div className="full-bleed-home">
         
-        {/* LEFT FLANK: DOOMSDAY */}
-        <aside className="flank left-flank">
-          <div className="flank-header doomsday-theme">
-            <h2>Phase 6 Protocol</h2>
-            <span className="flank-badge">Classified</span>
-          </div>
-          <div className="poster-container">
-            <img src="https://media.giphy.com/media/xT9IgusfDcqpPFzO0g/giphy.gif" alt="Avengers Assemble" className="flank-poster" />
-            <div className="poster-glitch-overlay"></div>
-          </div>
-          <div className="flank-content">
-            <h3 className="doom-text">Avengers: Doomsday</h3>
-            <p className="lore-text">The Multiverse is collapsing. A new threat emerges from the ashes of the Sacred Timeline. Prepare for the arrival of Victor Von Doom.</p>
-            <div className="countdown-box">
-              <span className="countdown-label">Target Release</span>
-              <span className="countdown-value">May 2026</span>
-            </div>
-          </div>
-        </aside>
-
-        {/* CENTRAL CORE */}
-        <main className="central-core">
-          <div className="core-hero">
-            <motion.h1 
-              initial={{ opacity: 0, y: -20 }}
+        {/* Full-Width Cinematic Hero Banner */}
+        <section className="hero-section">
+          <div className="hero-background"></div>
+          <div className="hero-vignette"></div>
+          <div className="hero-content">
+            <motion.div 
+              className="hero-logo-container"
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="core-title"
+              transition={{ duration: 1 }}
             >
-              The Sacred Timeline
-            </motion.h1>
-            <p className="core-subtitle">Advanced Multiverse Tracking System</p>
+              <img src="/sacred_timeline_logo.jpg" alt="Sacred Timeline" className="hero-icon" />
+              <h1 className="hero-title">The Sacred Timeline</h1>
+            </motion.div>
+            <motion.p 
+              className="hero-subtitle"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 1 }}
+            >
+              The definitive, interactive database for the Marvel Cinematic Universe.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 1 }}
+              style={{ marginTop: '2.5rem' }}
+            >
+              <Link to="/watch-order" className="hero-cta">
+                Access Master Timeline
+              </Link>
+            </motion.div>
           </div>
+        </section>
 
-          <div className="core-dashboard">
-            <div className="metrics-row">
-              <div className="metric-box">
-                <span className="metric-data">{totalEntries}</span>
-                <span className="metric-name">Total Entities</span>
+        {/* Home Content Body (Padded) */}
+        <div className="home-body">
+          
+          {/* Metrics Row */}
+          <section className="content-row">
+            <h2 className="row-header">S.H.I.E.L.D Global Metrics</h2>
+            <div className="metrics-cards">
+              <div className="metrics-card">
+                <span className="metrics-value">{totalEntries}</span>
+                <span className="metrics-label">Total Entries</span>
               </div>
-              <div className="metric-box highlight-box">
-                <span className="metric-data">{Math.round((watchedCount / totalEntries) * 100)}%</span>
-                <span className="metric-name">Completion</span>
+              <div className="metrics-card highlight">
+                <span className="metrics-value">{completionPercentage}%</span>
+                <span className="metrics-label">Your Completion</span>
               </div>
-              <div className="metric-box">
-                <span className="metric-data">Ph 6</span>
-                <span className="metric-name">Current Era</span>
+              <div className="metrics-card">
+                <span className="metrics-value">Phase 6</span>
+                <span className="metrics-label">Current Era</span>
               </div>
             </div>
+          </section>
 
-            <div className="core-navigation">
-              <Link to="/watch-order" className="nav-tile">
-                <div className="tile-bg watch-bg"></div>
-                <div className="tile-content">
-                  <h3>Master Timeline</h3>
-                  <p>Access the chronological watch order</p>
+          {/* Quick Navigation Row */}
+          <section className="content-row">
+            <h2 className="row-header">Explore the Archives</h2>
+            <div className="navigation-cards">
+              <Link to="/watch-order" className="nav-card watch-card">
+                <div className="nav-overlay"></div>
+                <div className="nav-content">
+                  <h3>Master Watch Order</h3>
+                  <p>Track your chronological or release progress</p>
                 </div>
               </Link>
-              <Link to="/phases" className="nav-tile">
-                <div className="tile-bg phases-bg"></div>
-                <div className="tile-content">
-                  <h3>Database</h3>
-                  <p>Browse by Phase & Saga</p>
+              <Link to="/phases" className="nav-card phases-card">
+                <div className="nav-overlay"></div>
+                <div className="nav-content">
+                  <h3>The Phases Database</h3>
+                  <p>Browse the Infinity and Multiverse sagas</p>
                 </div>
               </Link>
             </div>
+          </section>
 
-            <h3 className="sub-header">Upcoming Intel (Phase 6)</h3>
-            <div className="upcoming-feed">
-              {upcomingPhase6.slice(0, 4).map(entry => (
-                <Link to={`/entry/${entry.id}`} key={entry.id} className="feed-item">
-                  <div className="feed-meta">
-                    <span className="feed-date">{entry.releaseYear}</span>
+          {/* Horizontal Scrolling Upcoming Row */}
+          <section className="content-row">
+            <h2 className="row-header">Upcoming Intel</h2>
+            <div className="upcoming-horizontal-scroll">
+              {upcomingEntries.map(entry => (
+                <Link to={`/entry/${entry.id}`} key={entry.id} className="upcoming-poster-card">
+                  <div className="upcoming-meta">
+                    <span className="upcoming-year">{entry.releaseYear}</span>
                     <span className={`badge badge-${entry.type.toLowerCase()}`}>{entry.type}</span>
                   </div>
-                  <h4 className="feed-title">{entry.title}</h4>
+                  <h4 className="upcoming-title">{entry.title}</h4>
                 </Link>
               ))}
             </div>
-          </div>
-        </main>
+          </section>
 
-        {/* RIGHT FLANK: SECRET WARS & F4 */}
-        <aside className="flank right-flank">
-          <div className="flank-header secret-wars-theme">
-            <h2>The Climax</h2>
-            <span className="flank-badge warning">Critical</span>
-          </div>
-          <div className="flank-content">
-            <h3 className="secret-text">Avengers: Secret Wars</h3>
-            <p className="lore-text">The culmination of the Multiverse Saga. Realities will collide. Only one timeline will survive the incursions.</p>
-            <div className="countdown-box">
-              <span className="countdown-label">Target Release</span>
-              <span className="countdown-value">May 2027</span>
-            </div>
-          </div>
-          
-          <hr className="flank-divider" />
-          
-          <div className="flank-content">
-            <h3 className="f4-text">The Fantastic Four</h3>
-            <p className="lore-text">First Steps into a retro-futuristic universe. The First Family arrives.</p>
-            <div className="countdown-box">
-              <span className="countdown-label">Target Release</span>
-              <span className="countdown-value">July 2025</span>
-            </div>
-          </div>
-        </aside>
-
+        </div>
       </div>
     </PageTransition>
   );
