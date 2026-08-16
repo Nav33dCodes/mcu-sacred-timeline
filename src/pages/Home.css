@@ -1,0 +1,428 @@
+/* ==========================================================================
+   Sacred Timeline — design tokens
+   Add these two font families via <link> in index.html for best performance:
+   Bebas Neue (display) + IBM Plex Mono (data/labels) + Inter (body)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap');
+
+.tva-container {
+  --void: #0a0a0d;
+  --panel: #131318;
+  --panel-line: rgba(237, 230, 214, 0.10);
+  --amber: #f2a93b;
+  --gold: #e8c468;
+  --paper: #ede6d6;
+  --paper-dim: rgba(237, 230, 214, 0.62);
+  --teal: #1b3a4b;
+  --prune: #c1440e;
+
+  --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  position: relative;
+  min-height: 100vh;
+  background: var(--void);
+  color: var(--paper);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  /* Add margin to break out of global constraints if necessary */
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+}
+
+/* ==========================================================================
+   Nav
+   ========================================================================== */
+.tva-nav {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem clamp(1.25rem, 5vw, 3.5rem);
+}
+
+.tva-seal {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--amber);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+}
+
+.temporal-readout {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--paper-dim);
+}
+
+.readout-code {
+  color: var(--gold);
+}
+
+@media (max-width: 640px) {
+  .temporal-readout {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.tva-hero {
+  position: relative;
+  min-height: 84vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem 4rem;
+  text-align: center;
+}
+
+.tva-glow-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 38%, rgba(242, 169, 59, 0.16), transparent 70%),
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(27, 58, 75, 0.35), transparent 70%);
+  pointer-events: none;
+}
+
+.threads-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.tva-center {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.tva-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: var(--amber);
+  margin: 0 0 1.1rem;
+  text-transform: uppercase;
+}
+
+.tva-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  font-size: clamp(3rem, 11vw, 7.5rem);
+  background: linear-gradient(180deg, var(--paper) 0%, var(--gold) 65%, var(--amber) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 60px rgba(242, 169, 59, 0.15);
+}
+
+.tva-title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.tva-char {
+  display: inline-block;
+}
+
+.tva-subtitle {
+  margin: 1.6rem auto 0;
+  max-width: 520px;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  line-height: 1.6;
+  color: var(--paper-dim);
+}
+
+.tva-cta-group {
+  margin-top: 2.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.tva-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.tva-btn:hover {
+  transform: translateY(-2px);
+}
+
+.tva-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.tva-btn:hover svg {
+  transform: translateX(3px);
+}
+
+.primary-glow {
+  background: var(--amber);
+  color: #1a1204;
+  box-shadow: 0 0 0 1px rgba(242, 169, 59, 0.4), 0 8px 30px -8px rgba(242, 169, 59, 0.55);
+}
+
+.primary-glow:hover {
+  box-shadow: 0 0 0 1px rgba(242, 169, 59, 0.6), 0 12px 40px -6px rgba(242, 169, 59, 0.7);
+}
+
+.secondary-glow {
+  background: transparent;
+  color: var(--paper);
+  border: 1px solid var(--panel-line);
+}
+
+.secondary-glow:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  color: var(--paper-dim);
+}
+
+.scroll-cue-line {
+  width: 1px;
+  height: 30px;
+  background: linear-gradient(180deg, var(--amber), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   Phase marquee
+   ========================================================================== */
+.phase-marquee {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid var(--panel-line);
+  border-bottom: 1px solid var(--panel-line);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.phase-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.phase-marquee:hover .phase-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.phase-chip {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 1.1rem 2.25rem;
+  border-right: 1px solid var(--panel-line);
+  white-space: nowrap;
+}
+
+.phase-chip-id {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--amber);
+}
+
+.phase-chip-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+  color: var(--paper);
+}
+
+.phase-chip-era {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--paper-dim);
+}
+
+/* ==========================================================================
+   Entry cards
+   ========================================================================== */
+.entry-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1.25rem, 5vw, 3.5rem);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 860px) {
+  .entry-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.entry-card {
+  position: relative;
+  padding: 1.75rem 1.6rem;
+  background: var(--panel);
+  border: 1px solid var(--panel-line);
+  border-radius: 4px;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.entry-card:hover {
+  border-color: rgba(242, 169, 59, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px -20px rgba(242, 169, 59, 0.35);
+}
+
+.entry-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  color: var(--amber);
+  border: 1px solid rgba(242, 169, 59, 0.3);
+  padding: 0.25rem 0.55rem;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+.entry-card h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.7rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.6rem;
+  color: var(--paper);
+}
+
+.entry-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--paper-dim);
+  margin: 0 0 1.4rem;
+}
+
+.entry-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+.entry-link svg {
+  transition: transform 0.25s ease;
+}
+
+.entry-link:hover svg {
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.tva-footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 1.5rem 3rem;
+}
+
+.tva-stamp {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.3em;
+  color: var(--paper-dim);
+  border: 1px solid var(--panel-line);
+  padding: 0.6rem 1.2rem;
+  border-radius: 2px;
+  transform: rotate(-1deg);
+}
+
+/* ==========================================================================
+   Motion & accessibility
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .phase-marquee-track {
+    animation: none;
+  }
+
+  .scroll-cue-line {
+    animation: none;
+  }
+
+  .entry-card,
+  .tva-btn {
+    transition: none;
+  }
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+}
