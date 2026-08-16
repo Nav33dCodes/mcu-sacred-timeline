@@ -295,6 +295,56 @@
 }
 
 /* ==========================================================================
+   Global Metrics Dashboard
+   ========================================================================== */
+.metrics-dash {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  padding: 3rem 1.5rem;
+  background: var(--void);
+  border-bottom: 1px solid var(--panel-line);
+}
+
+.metric-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.metric-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--amber);
+  margin-bottom: 0.8rem;
+}
+
+.metric-value {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--paper);
+  text-shadow: 0 0 30px rgba(237, 230, 214, 0.1);
+}
+
+.metric-value.highlight {
+  color: var(--gold);
+  text-shadow: 0 0 40px rgba(242, 169, 59, 0.2);
+}
+
+@media (max-width: 640px) {
+  .metrics-dash {
+    gap: 2rem;
+    flex-direction: column;
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+/* ==========================================================================
    Entry cards
    ========================================================================== */
 .entry-grid {

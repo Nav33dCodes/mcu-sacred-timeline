@@ -4,18 +4,28 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { FaYoutube, FaInstagram, FaFacebookF, FaXTwitter, FaTiktok } from 'react-icons/fa6';
 import PageTransition from '../components/PageTransition';
 import './Home.css';
+import { phases as rawPhases, entries } from '../data/mcuData';
+import { useWatch } from '../context/WatchContext';
 
 // ---------------------------------------------------------------------------
-// Data — edit these to match your real routes / content
+// Dynamic Database Integration
 // ---------------------------------------------------------------------------
-const PHASES = [
-  { id: '01', name: 'Phase One', era: '2008 – 2012' },
-  { id: '02', name: 'Phase Two', era: '2013 – 2015' },
-  { id: '03', name: 'Phase Three', era: '2016 – 2019' },
-  { id: '04', name: 'Phase Four', era: '2021 – 2022' },
-  { id: '05', name: 'Phase Five', era: '2023 – 2024' },
-  { id: '06', name: 'Phase Six', era: '2025 – 2027' },
-];
+const DYNAMIC_PHASES = rawPhases.map(phase => {
+  const phaseEntries = entries.filter(e => e.phase === phase.id);
+  const years = phaseEntries.map(e => e.releaseYear).filter(Boolean);
+  
+  let era = 'Upcoming';
+  if (years.length > 0) {
+    const minYear = Math.min(...years);
+    const maxYear = Math.max(...years);
+    era = minYear === maxYear ? `${minYear}` : `${minYear} – ${maxYear}`;
+  }
+  
+  const idStr = String(phase.id).length <= 2 ? String(phase.id).padStart(2, '0') : String(phase.id);
+  const name = phase.name.split(':')[0]; // Just use "Phase 1" instead of "Phase 1: Assemble"
+
+  return { id: idStr, name, era };
+});
 
 const SOCIAL_LINKS = [
   { name: 'YouTube', href: 'https://www.youtube.com/marvel', Icon: FaYoutube },
@@ -44,7 +54,7 @@ const ENTRY_POINTS = [
     tag: 'MAP',
     title: 'Timeline Map',
     copy: 'A branching view of the Sacred Timeline — see where every variant, reset, and reboot actually forks from the source.',
-    to: '/phases',
+    to: '/timeline-map',
     cta: 'View the map',
   },
 ];
@@ -137,6 +147,11 @@ const TemporalReadout = () => {
 const Home = () => {
   const reduceMotion = useReducedMotion();
   const marqueeRef = useRef(null);
+  
+  const { isWatched } = useWatch();
+  const totalEntries = entries.length;
+  const watchedCount = entries.filter(e => isWatched(e.id)).length;
+  const completionPercentage = Math.round((watchedCount / totalEntries) * 100) || 0;
 
   return (
     <PageTransition>
@@ -235,13 +250,25 @@ const Home = () => {
         {/* ---------- Phase marquee ---------- */}
         <section className="phase-marquee" aria-label="Timeline phases">
           <div className="phase-marquee-track" ref={marqueeRef}>
-            {[...PHASES, ...PHASES].map((p, i) => (
+            {[...DYNAMIC_PHASES, ...DYNAMIC_PHASES, ...DYNAMIC_PHASES].map((p, i) => (
               <div className="phase-chip" key={`${p.id}-${i}`}>
                 <span className="phase-chip-id">{p.id}</span>
                 <span className="phase-chip-name">{p.name}</span>
                 <span className="phase-chip-era">{p.era}</span>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* ---------- Global Metrics Dashboard ---------- */}
+        <section className="metrics-dash" aria-label="Global Timeline Metrics">
+          <div className="metric-box">
+            <span className="metric-label">TOTAL ENTITIES</span>
+            <span className="metric-value">{totalEntries}</span>
+          </div>
+          <div className="metric-box">
+            <span className="metric-label">TIMELINE COMPLETION</span>
+            <span className="metric-value highlight">{completionPercentage}%</span>
           </div>
         </section>
 

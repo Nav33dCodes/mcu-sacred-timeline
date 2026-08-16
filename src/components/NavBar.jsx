@@ -92,6 +92,7 @@ const NavBar = () => {
               <NavLink to="/" end className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Home</NavLink>
               <NavLink to="/watch-order" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Watch Order</NavLink>
               <NavLink to="/phases" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Phases</NavLink>
+              <NavLink to="/timeline-map" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Map</NavLink>
             </nav>
             
             <div className="nav-actions">
