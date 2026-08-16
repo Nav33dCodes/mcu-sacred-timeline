@@ -79,7 +79,7 @@ const NavBar = () => {
     <div className="nav-wrapper" style={{ position: 'sticky', top: '1.5rem', zIndex: 100, padding: '0 1.5rem', marginBottom: '3rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       
       {/* Floating Navbar Pill */}
-      <header className="floating-nav" style={{ width: '100%', maxWidth: '700px', position: 'relative', zIndex: 101 }}>
+      <header className="floating-nav" style={{ width: '100%', maxWidth: '850px', position: 'relative', zIndex: 101 }}>
         
         {/* Normal Nav State */}
         {!isSearchOpen && (

@@ -70,7 +70,7 @@ body {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 700px;
+  max-width: 850px;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
 }
 
@@ -89,7 +89,7 @@ body {
 
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 1.25rem;
 }
 
 .nav-link {
