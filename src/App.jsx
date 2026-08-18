@@ -3,7 +3,6 @@ import { Suspense, lazy } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import NavBar from './components/NavBar';
 import { WatchProvider } from './context/WatchContext';
-import PageTransition from './components/PageTransition';
 import ScrollToTop from './components/ScrollToTop';
 
 // Performance Optimization: Lazy load route components for code-splitting
