@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaYoutube, FaInstagram, FaFacebookF, FaXTwitter, FaTiktok, FaPlay, FaXmark, FaDownload, FaMarvel } from 'react-icons/fa6';
+import { FaYoutube, FaInstagram, FaFacebookF, FaXTwitter, FaTiktok, FaPlay, FaXmark, FaDownload } from 'react-icons/fa6';
 import PageTransition from '../components/PageTransition';
 import { HOME_CONFIG, SOCIAL_LINKS } from '../config/siteConfig';
 import './Home.css';
