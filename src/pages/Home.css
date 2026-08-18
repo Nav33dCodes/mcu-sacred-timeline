@@ -5,11 +5,24 @@
 
 .home-container {
   position: relative;
+  background: black;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   margin-top: -100px; /* Pull up behind the navbar */
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 /* Cinematic Ken Burns Background */
@@ -156,13 +169,165 @@
   transform: translateY(-3px);
 }
 
-/* Footer */
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  z-index: 2;
+  width: 2px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.scroll-line {
+  width: 100%;
+  height: 50%;
+  background: var(--accent-color);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+
+@keyframes scrollLine {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+
+/* ==========================================================================
+   Media Section (Latest Drops)
+   ========================================================================== */
+.media-section {
+  position: relative;
+  z-index: 2;
+  padding: 6rem 2rem;
+  background: var(--bg-primary); /* Dark transition */
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.media-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.media-header h2 {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  letter-spacing: 0.5em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.media-divider {
+  width: 40px;
+  height: 2px;
+  background: var(--accent-color);
+  margin: 1.5rem auto 0;
+  box-shadow: 0 0 10px rgba(192, 22, 28, 0.5);
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Cinematic Cards */
+.media-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.media-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(61, 139, 61, 0.4); /* Doom Green border hover */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(61, 139, 61, 0.15);
+}
+
+.media-thumbnail {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  overflow: hidden;
+}
+
+.media-thumbnail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.media-card:hover .media-thumbnail img {
+  transform: scale(1.05);
+}
+
+/* Play Button Overlay */
+.media-play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.media-card:hover .media-play-overlay {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.play-icon {
+  font-size: 3rem;
+  color: rgba(255, 255, 255, 0.8);
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+  transition: all 0.3s ease;
+  transform: scale(0.9);
+}
+
+.media-card:hover .play-icon {
+  color: #fff;
+  transform: scale(1);
+  filter: drop-shadow(0 0 20px rgba(192, 22, 28, 0.8)); /* Crimson glow on play */
+}
+
+/* Card Info */
+.media-info {
+  padding: 1.5rem;
+}
+
+.media-info h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--text-main);
+  letter-spacing: 0.02em;
+}
+
+.media-info p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
 .home-footer {
   position: relative;
   z-index: 2;
-  padding: 3rem 0;
+  padding: 4rem 0;
   display: flex;
   justify-content: center;
+  background: var(--bg-primary);
 }
 
 .social-row {
@@ -195,7 +360,9 @@
   filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
 }
 
-/* Trailer Modal */
+/* ==========================================================================
+   Trailer Modal
+   ========================================================================== */
 .trailer-modal-backdrop {
   position: fixed;
   inset: 0;
@@ -212,7 +379,7 @@
 .trailer-modal-content {
   position: relative;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1100px;
   background: black;
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 12px;
@@ -267,5 +434,9 @@
     border-radius: 50%;
     width: 40px;
     height: 40px;
+  }
+  .media-grid {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
   }
 }
