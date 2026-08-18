@@ -6,10 +6,15 @@ import { FaYoutube, FaInstagram, FaFacebookF, FaXTwitter, FaTiktok } from 'react
 // ============================================================================
 
 export const HOME_CONFIG = {
-  // The filename of your wallpaper inside the public/assets/ folder
-  wallpaperUrl: '/assets/doomsday.jpg',
 
-  // The media drops shown in the scrollable section
+  // An array of 4K wallpapers. The hero section will automatically crossfade between them!
+  wallpapers: [
+    '/assets/doomsday.jpg',
+    '/assets/doomsday-2.jpg'
+  ],
+
+  // If you provide a logo image, it will display instead of the text title
+  heroLogoUrl: '/assets/doomsday-logo.png',
   latestDrops: [
     {
       id: 'irVNGjRFZGk', // Extracted from your Official Trailer link

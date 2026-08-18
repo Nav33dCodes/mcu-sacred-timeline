@@ -1,29 +1,52 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaYoutube, FaInstagram, FaFacebookF, FaXTwitter, FaTiktok, FaPlay, FaXmark } from 'react-icons/fa6';
+import { FaYoutube, FaInstagram, FaFacebookF, FaXTwitter, FaTiktok, FaPlay, FaXmark, FaDownload } from 'react-icons/fa6';
 import PageTransition from '../components/PageTransition';
 import { HOME_CONFIG, SOCIAL_LINKS } from '../config/siteConfig';
 import './Home.css';
 
 const Home = () => {
   const [activeTrailerId, setActiveTrailerId] = useState(null);
+  const [activePoster, setActivePoster] = useState(null);
+  const [currentWallpaperIndex, setCurrentWallpaperIndex] = useState(0);
+  const [logoFailed, setLogoFailed] = useState(false);
+
+  // Auto-fading background carousel
+  useEffect(() => {
+    if (!HOME_CONFIG.wallpapers || HOME_CONFIG.wallpapers.length <= 1) return;
+    
+    const interval = setInterval(() => {
+      setCurrentWallpaperIndex((prev) => (prev + 1) % HOME_CONFIG.wallpapers.length);
+    }, 8000); // Change wallpaper every 8 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   const closeTrailer = () => setActiveTrailerId(null);
+  const closePoster = () => setActivePoster(null);
 
   return (
     <PageTransition>
       <div className="home-container">
         
         {/* ========================================================= */}
-        {/* HERO SECTION (Cinematic Wide Layout) */}
+        {/* HERO SECTION (Cinematic Carousel Layout) */}
         {/* ========================================================= */}
         <section className="hero-section">
-          {/* Full Screen High-Res Background */}
-          <div 
-            className="hero-background-wide" 
-            style={{ backgroundImage: `url(${HOME_CONFIG.wallpaperUrl}), url(/sacred_timeline_logo.jpg)` }} 
-          />
+          {/* Fading Backgrounds */}
+          <AnimatePresence mode="popLayout">
+            <motion.div 
+              key={currentWallpaperIndex}
+              className="hero-background-wide"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 2, ease: "easeInOut" }}
+              style={{ backgroundImage: `url(${HOME_CONFIG.wallpapers[currentWallpaperIndex]}), url(/sacred_timeline_logo.jpg)` }} 
+            />
+          </AnimatePresence>
+
           {/* Subtle gradient so text is readable but cast is visible */}
           <div className="hero-overlay-wide" />
 
@@ -36,7 +59,20 @@ const Home = () => {
               className="hero-text-center"
             >
               <p className="hero-eyebrow">{HOME_CONFIG.heroEyebrow}</p>
-              <h1 className="hero-title">{HOME_CONFIG.heroTitleLine1}<br/><span>{HOME_CONFIG.heroTitleLine2}</span></h1>
+              
+              {/* Render custom logo if provided and valid, else text */}
+              {HOME_CONFIG.heroLogoUrl && !logoFailed ? (
+                <div className="hero-logo-wrapper">
+                  <img 
+                    src={HOME_CONFIG.heroLogoUrl} 
+                    alt={`${HOME_CONFIG.heroTitleLine1} ${HOME_CONFIG.heroTitleLine2}`}
+                    className="hero-logo-img"
+                    onError={() => setLogoFailed(true)}
+                  />
+                </div>
+              ) : (
+                <h1 className="hero-title">{HOME_CONFIG.heroTitleLine1}<br/><span>{HOME_CONFIG.heroTitleLine2}</span></h1>
+              )}
               
               <div className="hero-actions">
                 <Link to="/watch-order" className="btn-primary">
@@ -125,6 +161,7 @@ const Home = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
+                onClick={() => setActivePoster(poster)}
               >
                 <div className="poster-image-wrapper">
                   <img 
@@ -172,14 +209,14 @@ const Home = () => {
         <AnimatePresence>
           {activeTrailerId && (
             <motion.div 
-              className="trailer-modal-backdrop"
+              className="modal-backdrop"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeTrailer}
             >
               <motion.div 
-                className="trailer-modal-content"
+                className="modal-content trailer-content"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
@@ -193,12 +230,47 @@ const Home = () => {
                   <iframe 
                     width="100%" 
                     height="100%" 
-                    src={`https://www.youtube.com/embed/${activeTrailerId}?autoplay=1`} 
+                    src={`https://www.youtube.com/embed/${activeTrailerId.split('&')[0]}?autoplay=1${activeTrailerId.includes('&t=') ? `&start=${parseInt(activeTrailerId.split('&t=')[1])}` : ''}`} 
                     title="YouTube video player" 
                     frameBorder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     allowFullScreen
                   />
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ========================================================= */}
+        {/* POSTER LIGHTBOX MODAL */}
+        {/* ========================================================= */}
+        <AnimatePresence>
+          {activePoster && (
+            <motion.div 
+              className="modal-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closePoster}
+            >
+              <motion.div 
+                className="modal-content poster-lightbox-content"
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button className="close-modal-btn" onClick={closePoster}>
+                  <FaXmark size={24} />
+                </button>
+                <img src={activePoster.url} alt={activePoster.title} className="lightbox-image" />
+                <div className="lightbox-actions">
+                  <a href={activePoster.url} download className="btn-primary">
+                    <FaDownload size={14} style={{ marginRight: '0.5rem' }} />
+                    Download Poster
+                  </a>
                 </div>
               </motion.div>
             </motion.div>
