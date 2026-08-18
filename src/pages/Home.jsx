@@ -4,28 +4,8 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { FaYoutube, FaInstagram, FaFacebookF, FaXTwitter, FaTiktok } from 'react-icons/fa6';
 import PageTransition from '../components/PageTransition';
 import './Home.css';
-import { phases as rawPhases, entries } from '../data/mcuData';
+import { entries } from '../data/mcuData';
 import { useWatch } from '../context/WatchContext';
-
-// ---------------------------------------------------------------------------
-// Dynamic Database Integration
-// ---------------------------------------------------------------------------
-const DYNAMIC_PHASES = rawPhases.map(phase => {
-  const phaseEntries = entries.filter(e => e.phase === phase.id);
-  const years = phaseEntries.map(e => e.releaseYear).filter(Boolean);
-  
-  let era = 'Upcoming';
-  if (years.length > 0) {
-    const minYear = Math.min(...years);
-    const maxYear = Math.max(...years);
-    era = minYear === maxYear ? `${minYear}` : `${minYear} – ${maxYear}`;
-  }
-  
-  const idStr = String(phase.id).length <= 2 ? String(phase.id).padStart(2, '0') : String(phase.id);
-  const name = phase.name.split(':')[0]; // Just use "Phase 1" instead of "Phase 1: Assemble"
-
-  return { id: idStr, name, era };
-});
 
 const SOCIAL_LINKS = [
   { name: 'YouTube', href: 'https://www.youtube.com/marvel', Icon: FaYoutube },
@@ -38,25 +18,11 @@ const SOCIAL_LINKS = [
 const ENTRY_POINTS = [
   {
     tag: 'RECOMMENDED',
-    title: 'Watch Order',
-    copy: 'Every film and series, sequenced the way the story actually unfolds — release order and chronological order, side by side.',
+    title: 'Master Order',
+    copy: 'The complete timeline, perfectly organized into main arcs and branches.',
     to: '/watch-order',
     cta: 'Open the sequence',
-  },
-  {
-    tag: 'ARCHIVE',
-    title: 'Phase Archive',
-    copy: 'Six phases, one continuity. Browse the Multiverse Saga and everything that came before it, filed and cross-referenced.',
-    to: '/phases',
-    cta: 'Browse the archive',
-  },
-  {
-    tag: 'MAP',
-    title: 'Timeline Map',
-    copy: 'A branching view of the Sacred Timeline — see where every variant, reset, and reboot actually forks from the source.',
-    to: '/timeline-map',
-    cta: 'View the map',
-  },
+  }
 ];
 
 // ---------------------------------------------------------------------------
@@ -224,13 +190,10 @@ const Home = () => {
               transition={{ delay: 1.35, duration: 0.8 }}
             >
               <Link to="/watch-order" className="tva-btn primary-glow">
-                <span>Enter the Timeline</span>
+                <span>Enter the Watch Order</span>
                 <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
                   <path d="M3 8h9M8 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </Link>
-              <Link to="/phases" className="tva-btn secondary-glow">
-                Access the Archives
               </Link>
             </motion.div>
           </div>
@@ -247,18 +210,6 @@ const Home = () => {
           </motion.div>
         </section>
 
-        {/* ---------- Phase marquee ---------- */}
-        <section className="phase-marquee" aria-label="Timeline phases">
-          <div className="phase-marquee-track" ref={marqueeRef}>
-            {[...DYNAMIC_PHASES, ...DYNAMIC_PHASES, ...DYNAMIC_PHASES].map((p, i) => (
-              <div className="phase-chip" key={`${p.id}-${i}`}>
-                <span className="phase-chip-id">{p.id}</span>
-                <span className="phase-chip-name">{p.name}</span>
-                <span className="phase-chip-era">{p.era}</span>
-              </div>
-            ))}
-          </div>
-        </section>
 
         {/* ---------- Global Metrics Dashboard ---------- */}
         <section className="metrics-dash" aria-label="Global Timeline Metrics">
