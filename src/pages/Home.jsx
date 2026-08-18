@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaYoutube, FaInstagram, FaFacebookF, FaXTwitter, FaTiktok, FaPlay, FaXmark, FaDownload } from 'react-icons/fa6';
+import { FaYoutube, FaInstagram, FaFacebookF, FaXTwitter, FaTiktok, FaPlay, FaXmark, FaDownload, FaMarvel } from 'react-icons/fa6';
 import PageTransition from '../components/PageTransition';
 import { HOME_CONFIG, SOCIAL_LINKS } from '../config/siteConfig';
 import './Home.css';
@@ -10,7 +10,6 @@ const Home = () => {
   const [activeTrailerId, setActiveTrailerId] = useState(null);
   const [activePoster, setActivePoster] = useState(null);
   const [currentWallpaperIndex, setCurrentWallpaperIndex] = useState(0);
-  const [logoFailed, setLogoFailed] = useState(false);
 
   // Auto-fading background carousel
   useEffect(() => {
@@ -47,7 +46,7 @@ const Home = () => {
             />
           </AnimatePresence>
 
-          {/* Subtle gradient so text is readable but cast is visible */}
+          {/* Subtle gradient so logo/buttons are readable but cast is visible */}
           <div className="hero-overlay-wide" />
 
           {/* Centered Bottom Content */}
@@ -58,30 +57,26 @@ const Home = () => {
               transition={{ duration: 1, ease: 'easeOut' }}
               className="hero-text-center"
             >
-              <p className="hero-eyebrow">{HOME_CONFIG.heroEyebrow}</p>
-              
-              {/* Render custom logo if provided and valid, else text */}
-              {HOME_CONFIG.heroLogoUrl && !logoFailed ? (
-                <div className="hero-logo-wrapper">
-                  <img 
-                    src={HOME_CONFIG.heroLogoUrl} 
-                    alt={`${HOME_CONFIG.heroTitleLine1} ${HOME_CONFIG.heroTitleLine2}`}
-                    className="hero-logo-img"
-                    onError={() => setLogoFailed(true)}
-                  />
-                </div>
-              ) : (
-                <h1 className="hero-title">{HOME_CONFIG.heroTitleLine1}<br/><span>{HOME_CONFIG.heroTitleLine2}</span></h1>
-              )}
+              {/* Official 3D Metallic Logo */}
+              <div className="hero-logo-wrapper">
+                <img 
+                  src={HOME_CONFIG.heroLogoUrl} 
+                  alt="Avengers Doomsday"
+                  className="hero-logo-img"
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
+              </div>
               
               <div className="hero-actions">
                 <Link to="/watch-order" className="btn-primary">
+                  <span className="btn-shine"></span>
                   Enter Timeline
                 </Link>
                 <button 
                   className="btn-secondary" 
                   onClick={() => document.getElementById('media-section').scrollIntoView({ behavior: 'smooth' })}
                 >
+                  <span className="btn-shine"></span>
                   View Latest Drops
                 </button>
               </div>
@@ -171,36 +166,60 @@ const Home = () => {
                   />
                   <div className="poster-glass-shine" />
                 </div>
-                <div className="poster-info">
-                  <p>{poster.title}</p>
-                </div>
+                {/* Text explicitly removed for a clean enterprise look */}
               </motion.div>
             ))}
           </div>
         </section>
 
         {/* ========================================================= */}
-        {/* FOOTER */}
+        {/* PROFESSIONAL ENTERPRISE FOOTER */}
         {/* ========================================================= */}
-        <footer className="home-footer">
-          <nav className="social-row" aria-label="Marvel on social media">
-            <span className="social-label">FOLLOW MARVEL</span>
-            <div className="social-icons">
-              {SOCIAL_LINKS.map(({ name, href, Icon }) => (
-                <a
-                  key={name}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Marvel on ${name}`}
-                  className="social-icon"
-                  title={name}
-                >
-                  <Icon size={16} aria-hidden="true" />
-                </a>
-              ))}
+        <footer className="enterprise-footer">
+          <div className="footer-content">
+            
+            {/* Top: Links & Socials */}
+            <div className="footer-top">
+              <a 
+                href="https://www.marvel.com" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="footer-marvel-link"
+              >
+                <FaMarvel className="marvel-logo-icon" />
+                <span>OFFICIAL MARVEL WEBSITE</span>
+              </a>
+
+              <div className="footer-socials">
+                {SOCIAL_LINKS.map(({ name, href, Icon }) => (
+                  <a
+                    key={name}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Marvel on ${name}`}
+                    className="footer-social-icon"
+                    title={name}
+                  >
+                    <Icon size={20} aria-hidden="true" />
+                  </a>
+                ))}
+              </div>
             </div>
-          </nav>
+
+            <div className="footer-divider"></div>
+
+            {/* Bottom: Developer Credits */}
+            <div className="footer-bottom">
+              <p className="developer-credit">
+                ENGINEERED BY <span>NAVEED AHMED</span>
+              </p>
+              <a href="mailto:iamnaveed.cs@gmail.com" className="developer-email">
+                iamnaveed.cs@gmail.com
+              </a>
+            </div>
+
+          </div>
         </footer>
 
         {/* ========================================================= */}
