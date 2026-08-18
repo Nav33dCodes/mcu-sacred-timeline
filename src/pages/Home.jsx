@@ -186,7 +186,6 @@ const Home = () => {
                 rel="noopener noreferrer" 
                 className="footer-marvel-link"
               >
-                <FaMarvel className="marvel-logo-icon" />
                 <span>OFFICIAL MARVEL WEBSITE</span>
               </a>
 
