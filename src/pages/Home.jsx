@@ -1,45 +1,169 @@
-import { FaYoutube, FaInstagram, FaFacebookF, FaXTwitter, FaTiktok } from 'react-icons/fa6';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaYoutube, FaInstagram, FaFacebookF, FaXTwitter, FaTiktok, FaPlay, FaXmark } from 'react-icons/fa6';
 import PageTransition from '../components/PageTransition';
-
-const SOCIAL_LINKS = [
-  { name: 'YouTube', href: 'https://www.youtube.com/marvel', Icon: FaYoutube },
-  { name: 'Instagram', href: 'https://www.instagram.com/marvel', Icon: FaInstagram },
-  { name: 'Facebook', href: 'https://www.facebook.com/Marvel', Icon: FaFacebookF },
-  { name: 'X', href: 'https://x.com/marvel', Icon: FaXTwitter },
-  { name: 'TikTok', href: 'https://www.tiktok.com/@marvel', Icon: FaTiktok },
-];
+import { HOME_CONFIG, SOCIAL_LINKS } from '../config/siteConfig';
+import './Home.css';
 
 const Home = () => {
+  const [activeTrailerId, setActiveTrailerId] = useState(null);
+
+  const closeTrailer = () => setActiveTrailerId(null);
+
   return (
     <PageTransition>
-      <div style={{ minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ display: 'flex', gap: '1.5rem' }}>
-          {SOCIAL_LINKS.map(({ name, href, Icon }) => (
-            <a
-              key={name}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Marvel on ${name}`}
-              title={name}
-              style={{
-                color: 'var(--text-muted)',
-                fontSize: '1.5rem',
-                transition: 'color 0.2s, transform 0.2s',
-              }}
-              onMouseOver={(e) => {
-                e.currentTarget.style.color = 'var(--text-main)';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.color = 'var(--text-muted)';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
+      <div className="home-container">
+        
+        {/* ========================================================= */}
+        {/* HERO SECTION */}
+        {/* ========================================================= */}
+        <section className="hero-section">
+          {/* Cinematic Background */}
+          <div 
+            className="hero-background" 
+            style={{ backgroundImage: `url(${HOME_CONFIG.wallpaperUrl}), url(/sacred_timeline_logo.jpg)` }} 
+          />
+          <div className="hero-overlay" />
+
+          {/* Hero Content */}
+          <div className="hero-content">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: 'easeOut' }}
+              className="hero-center"
             >
-              <Icon aria-hidden="true" />
-            </a>
-          ))}
-        </div>
+              <p className="hero-eyebrow">{HOME_CONFIG.heroEyebrow}</p>
+              <h1 className="hero-title">{HOME_CONFIG.heroTitleLine1}<br/><span>{HOME_CONFIG.heroTitleLine2}</span></h1>
+              
+              <div className="hero-actions">
+                <Link to="/watch-order" className="btn-primary">
+                  Enter Timeline
+                </Link>
+                {/* Scroll Down Hint instead of Watch Trailer */}
+                <button 
+                  className="btn-secondary" 
+                  onClick={() => document.getElementById('media-section').scrollIntoView({ behavior: 'smooth' })}
+                >
+                  View Latest Drops
+                </button>
+              </div>
+            </motion.div>
+          </div>
+          
+          {/* Animated Scroll Down Indicator */}
+          <motion.div 
+            className="scroll-indicator"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 2 }}
+          >
+            <div className="scroll-line" />
+          </motion.div>
+        </section>
+
+        {/* ========================================================= */}
+        {/* LATEST DROPS MEDIA SECTION */}
+        {/* ========================================================= */}
+        <section id="media-section" className="media-section">
+          <motion.div 
+            className="media-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.8 }}
+          >
+            <h2>LATEST DROPS</h2>
+            <div className="media-divider" />
+          </motion.div>
+
+          <div className="media-grid">
+            {HOME_CONFIG.latestDrops.map((drop, index) => (
+              <motion.div 
+                key={drop.id}
+                className="media-card"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                onClick={() => setActiveTrailerId(drop.id)}
+              >
+                <div className="media-thumbnail">
+                  <img src={`https://img.youtube.com/vi/${drop.id}/maxresdefault.jpg`} alt={drop.title} />
+                  <div className="media-play-overlay">
+                    <FaPlay className="play-icon" />
+                  </div>
+                </div>
+                <div className="media-info">
+                  <h3>{drop.title}</h3>
+                  <p>{drop.subtitle}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* ========================================================= */}
+        {/* FOOTER */}
+        {/* ========================================================= */}
+        <footer className="home-footer">
+          <nav className="social-row" aria-label="Marvel on social media">
+            <span className="social-label">FOLLOW MARVEL</span>
+            <div className="social-icons">
+              {SOCIAL_LINKS.map(({ name, href, Icon }) => (
+                <a
+                  key={name}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Marvel on ${name}`}
+                  className="social-icon"
+                  title={name}
+                >
+                  <Icon size={16} aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          </nav>
+        </footer>
+
+        {/* ========================================================= */}
+        {/* TRAILER MODAL */}
+        {/* ========================================================= */}
+        <AnimatePresence>
+          {activeTrailerId && (
+            <motion.div 
+              className="trailer-modal-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeTrailer}
+            >
+              <motion.div 
+                className="trailer-modal-content"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button className="close-modal-btn" onClick={closeTrailer}>
+                  <FaXmark size={24} />
+                </button>
+                <div className="video-responsive">
+                  <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src={`https://www.youtube.com/embed/${activeTrailerId}?autoplay=1`} 
+                    title="YouTube video player" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowFullScreen
+                  />
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </PageTransition>
   );
