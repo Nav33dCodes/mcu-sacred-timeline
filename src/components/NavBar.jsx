@@ -1,6 +1,6 @@
 import { NavLink, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import './NavBar.css'; // Creating a dedicated CSS file for the flagship navbar
+import './Navbar.css'; // Creating a dedicated CSS file for the flagship navbar
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
