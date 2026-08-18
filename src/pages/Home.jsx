@@ -42,7 +42,12 @@ const Home = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 2, ease: "easeInOut" }}
-              style={{ backgroundImage: `url(${HOME_CONFIG.wallpapers[currentWallpaperIndex]}), url(/sacred_timeline_logo.jpg)` }} 
+              style={{ 
+                backgroundImage: `url(${HOME_CONFIG.wallpapers[currentWallpaperIndex]}), url(/sacred_timeline_logo.jpg)`,
+                backgroundSize: HOME_CONFIG.wallpapers[currentWallpaperIndex].includes('logo') ? 'contain' : 'cover',
+                backgroundPosition: HOME_CONFIG.wallpapers[currentWallpaperIndex].includes('logo') ? 'center' : 'top center',
+                margin: HOME_CONFIG.wallpapers[currentWallpaperIndex].includes('logo') ? '10% auto' : '0'
+              }} 
             />
           </AnimatePresence>
 
