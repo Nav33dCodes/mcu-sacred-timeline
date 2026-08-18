@@ -9,6 +9,8 @@
   display: flex;
   flex-direction: column;
   margin-top: -100px; /* Pull up behind the navbar */
+  margin-left: -1.5rem; /* Negate content-area horizontal padding */
+  margin-right: -1.5rem; /* Negate content-area horizontal padding */
 }
 
 /* ==========================================================================
