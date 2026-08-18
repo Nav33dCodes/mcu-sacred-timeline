@@ -46,16 +46,16 @@ const Home = () => {
             />
           </AnimatePresence>
 
-          {/* Subtle gradient so logo/buttons are readable but cast is visible */}
+          {/* Cinematic Gradient focusing on bottom-left */}
           <div className="hero-overlay-wide" />
 
-          {/* Centered Bottom Content */}
+          {/* Bottom Left Content */}
           <div className="hero-wide-content">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: 'easeOut' }}
-              className="hero-text-center"
+              className="hero-text-left"
             >
               {/* Official 3D Metallic Logo */}
               <div className="hero-logo-wrapper">
