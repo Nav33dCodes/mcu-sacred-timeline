@@ -10,11 +10,12 @@ export const HOME_CONFIG = {
   // An array of 4K wallpapers. The hero section will automatically crossfade between them!
   wallpapers: [
     '/assets/doomsday.jpg',
-    '/assets/doomsday-2.jpg'
+    '/assets/doomsday-2.jpg',
+    '/assets/doomsday-logo.png'
   ],
 
-  // If you provide a logo image, it will display instead of the text title
-  heroLogoUrl: '/assets/doomsday-logo.png',
+  // Logo is now in the background rotation
+  heroLogoUrl: '',
   latestDrops: [
     {
       id: 'irVNGjRFZGk', // Extracted from your Official Trailer link
