@@ -46,27 +46,17 @@ const Home = () => {
             />
           </AnimatePresence>
 
-          {/* Cinematic Gradient focusing on bottom-left */}
+          {/* Cinematic Gradient */}
           <div className="hero-overlay-wide" />
 
-          {/* Bottom Left Content */}
+          {/* Centered Bottom Content */}
           <div className="hero-wide-content">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: 'easeOut' }}
-              className="hero-text-left"
+              className="hero-text-center"
             >
-              {/* Official 3D Metallic Logo */}
-              <div className="hero-logo-wrapper">
-                <img 
-                  src={HOME_CONFIG.heroLogoUrl} 
-                  alt="Avengers Doomsday"
-                  className="hero-logo-img"
-                  onError={(e) => { e.target.style.display = 'none'; }}
-                />
-              </div>
-              
               <div className="hero-actions">
                 <Link to="/watch-order" className="btn-primary">
                   <span className="btn-shine"></span>
