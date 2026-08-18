@@ -31,6 +31,7 @@ export const HOME_CONFIG = {
   // Official Theatrical Posters
   posters: [
     { id: 'poster-1', url: '/assets/doomsday.jpg', title: 'Official Teaser Poster' },
+    { id: 'poster-2', url: '/assets/doomsday-2.jpg', title: 'Character Poster' },
     // Add more posters here as you download them:
     // { id: 'poster-2', url: '/assets/another-poster.jpg', title: 'Character Poster' },
   ],
