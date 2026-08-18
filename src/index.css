@@ -160,7 +160,7 @@ body {
 
 .content-area {
   flex: 1;
-  padding: 0 1.5rem 5rem 1.5rem;
+  padding: 100px 1.5rem 5rem 1.5rem; /* 100px top padding to push content below fixed navbar */
 }
 
 .content-container {
