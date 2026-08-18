@@ -16,24 +16,24 @@ const Home = () => {
       <div className="home-container">
         
         {/* ========================================================= */}
-        {/* HERO SECTION (Split Layout) */}
+        {/* HERO SECTION (Cinematic Wide Layout) */}
         {/* ========================================================= */}
         <section className="hero-section">
-          {/* Deep Blur Background using the primary poster */}
+          {/* Full Screen High-Res Background */}
           <div 
-            className="hero-background-blur" 
+            className="hero-background-wide" 
             style={{ backgroundImage: `url(${HOME_CONFIG.wallpaperUrl}), url(/sacred_timeline_logo.jpg)` }} 
           />
-          <div className="hero-overlay" />
+          {/* Subtle gradient so text is readable but cast is visible */}
+          <div className="hero-overlay-wide" />
 
-          {/* Split Content Container */}
-          <div className="hero-split-content">
-            {/* Left Side: Text and Actions */}
+          {/* Centered Bottom Content */}
+          <div className="hero-wide-content">
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: 'easeOut' }}
-              className="hero-text-side"
+              className="hero-text-center"
             >
               <p className="hero-eyebrow">{HOME_CONFIG.heroEyebrow}</p>
               <h1 className="hero-title">{HOME_CONFIG.heroTitleLine1}<br/><span>{HOME_CONFIG.heroTitleLine2}</span></h1>
@@ -48,23 +48,6 @@ const Home = () => {
                 >
                   View Latest Drops
                 </button>
-              </div>
-            </motion.div>
-
-            {/* Right Side: Floating Original Poster */}
-            <motion.div
-              initial={{ opacity: 0, x: 50, rotateY: -15 }}
-              animate={{ opacity: 1, x: 0, rotateY: 0 }}
-              transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
-              className="hero-poster-side"
-            >
-              <div className="floating-poster-wrapper">
-                <img 
-                  src={HOME_CONFIG.wallpaperUrl} 
-                  alt="Official Poster" 
-                  className="floating-poster"
-                  onError={(e) => { e.target.src = '/sacred_timeline_logo.jpg' }}
-                />
               </div>
             </motion.div>
           </div>
