@@ -22,6 +22,13 @@ export const HOME_CONFIG = {
       subtitle: 'In Theaters December 18',
     }
   ],
+
+  // Official Theatrical Posters
+  posters: [
+    { id: 'poster-1', url: '/assets/doomsday.jpg', title: 'Official Teaser Poster' },
+    // Add more posters here as you download them:
+    // { id: 'poster-2', url: '/assets/another-poster.jpg', title: 'Character Poster' },
+  ],
   
   // The big cinematic title on the home page
   heroEyebrow: 'A NEW ERA BEGINS',

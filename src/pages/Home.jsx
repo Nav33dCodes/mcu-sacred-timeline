@@ -16,23 +16,24 @@ const Home = () => {
       <div className="home-container">
         
         {/* ========================================================= */}
-        {/* HERO SECTION */}
+        {/* HERO SECTION (Split Layout) */}
         {/* ========================================================= */}
         <section className="hero-section">
-          {/* Cinematic Background */}
+          {/* Deep Blur Background using the primary poster */}
           <div 
-            className="hero-background" 
+            className="hero-background-blur" 
             style={{ backgroundImage: `url(${HOME_CONFIG.wallpaperUrl}), url(/sacred_timeline_logo.jpg)` }} 
           />
           <div className="hero-overlay" />
 
-          {/* Hero Content */}
-          <div className="hero-content">
+          {/* Split Content Container */}
+          <div className="hero-split-content">
+            {/* Left Side: Text and Actions */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: 'easeOut' }}
-              className="hero-center"
+              className="hero-text-side"
             >
               <p className="hero-eyebrow">{HOME_CONFIG.heroEyebrow}</p>
               <h1 className="hero-title">{HOME_CONFIG.heroTitleLine1}<br/><span>{HOME_CONFIG.heroTitleLine2}</span></h1>
@@ -41,13 +42,29 @@ const Home = () => {
                 <Link to="/watch-order" className="btn-primary">
                   Enter Timeline
                 </Link>
-                {/* Scroll Down Hint instead of Watch Trailer */}
                 <button 
                   className="btn-secondary" 
                   onClick={() => document.getElementById('media-section').scrollIntoView({ behavior: 'smooth' })}
                 >
                   View Latest Drops
                 </button>
+              </div>
+            </motion.div>
+
+            {/* Right Side: Floating Original Poster */}
+            <motion.div
+              initial={{ opacity: 0, x: 50, rotateY: -15 }}
+              animate={{ opacity: 1, x: 0, rotateY: 0 }}
+              transition={{ duration: 1.2, ease: 'easeOut', delay: 0.2 }}
+              className="hero-poster-side"
+            >
+              <div className="floating-poster-wrapper">
+                <img 
+                  src={HOME_CONFIG.wallpaperUrl} 
+                  alt="Official Poster" 
+                  className="floating-poster"
+                  onError={(e) => { e.target.src = '/sacred_timeline_logo.jpg' }}
+                />
               </div>
             </motion.div>
           </div>
@@ -67,13 +84,13 @@ const Home = () => {
         {/* ========================================================= */}
         <section id="media-section" className="media-section">
           <motion.div 
-            className="media-header"
+            className="section-header"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.8 }}
           >
             <h2>LATEST DROPS</h2>
-            <div className="media-divider" />
+            <div className="section-divider" />
           </motion.div>
 
           <div className="media-grid">
@@ -96,6 +113,46 @@ const Home = () => {
                 <div className="media-info">
                   <h3>{drop.title}</h3>
                   <p>{drop.subtitle}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* ========================================================= */}
+        {/* OFFICIAL POSTERS GALLERY */}
+        {/* ========================================================= */}
+        <section className="posters-section">
+          <motion.div 
+            className="section-header"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.8 }}
+          >
+            <h2>OFFICIAL POSTERS</h2>
+            <div className="section-divider" />
+          </motion.div>
+
+          <div className="posters-grid">
+            {HOME_CONFIG.posters.map((poster, index) => (
+              <motion.div 
+                key={poster.id}
+                className="poster-card"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <div className="poster-image-wrapper">
+                  <img 
+                    src={poster.url} 
+                    alt={poster.title} 
+                    onError={(e) => { e.target.src = '/sacred_timeline_logo.jpg' }}
+                  />
+                  <div className="poster-glass-shine" />
+                </div>
+                <div className="poster-info">
+                  <p>{poster.title}</p>
                 </div>
               </motion.div>
             ))}
