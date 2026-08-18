@@ -11,7 +11,6 @@ const Home = lazy(() => import('./pages/Home'));
 const WatchOrder = lazy(() => import('./pages/WatchOrder'));
 const PhasesList = lazy(() => import('./pages/PhasesList'));
 const EntryDetail = lazy(() => import('./pages/EntryDetail'));
-const TimelineMap = lazy(() => import('./pages/TimelineMap'));
 
 // Loading Fallback for Suspense
 const PageLoader = () => (
@@ -41,10 +40,6 @@ const AnimatedRoutes = () => {
         <Route path="entry/:id" element={
           <Suspense fallback={<PageLoader />}><EntryDetail /></Suspense>
         } />
-        <Route path="timeline-map" element={
-          <Suspense fallback={<PageLoader />}><TimelineMap /></Suspense>
-        } />
-
       </Routes>
     </AnimatePresence>
   );

@@ -127,13 +127,6 @@ const NavBar = () => {
               >
                 Phases
               </NavLink>
-              <NavLink
-                to="/timeline-map"
-                className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
-                style={{ padding: '0.4rem 0.85rem', borderRadius: '999px' }}
-              >
-                Map
-              </NavLink>
             </nav>
 
             <div className="nav-actions" style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
