@@ -35,7 +35,7 @@ const NavBar = () => {
 
   // Search Logic
   const searchableEntries = useMemo(() => {
-    return entries.filter(e => ['Movie', 'Series', 'Special'].includes(e.type));
+    return entries;
   }, []);
 
   const fuse = useMemo(() => {
@@ -71,7 +71,7 @@ const NavBar = () => {
   };
 
   const handleResultClick = (id) => {
-    navigate(`/entry/${id}`);
+    navigate(`/watch-order`);
     closeSearch();
   };
 
@@ -120,13 +120,7 @@ const NavBar = () => {
               >
                 Watch Order
               </NavLink>
-              <NavLink
-                to="/phases"
-                className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
-                style={{ padding: '0.4rem 0.85rem', borderRadius: '999px' }}
-              >
-                Phases
-              </NavLink>
+
             </nav>
 
             <div className="nav-actions" style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
@@ -246,9 +240,7 @@ const NavBar = () => {
                   onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                    <span className={`badge badge-${entry.type.toLowerCase()}`} style={{ fontSize: '0.6rem' }}>{entry.type}</span>
                     <span style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: '1.1rem', color: '#FFFFFF' }}>{entry.title}</span>
-                    <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.85rem' }}>({entry.releaseYear})</span>
                   </div>
                 </div>
               ))
