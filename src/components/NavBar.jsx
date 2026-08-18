@@ -70,7 +70,7 @@ const NavBar = () => {
     setQuery('');
   };
 
-  const handleResultClick = (id) => {
+  const handleResultClick = () => {
     navigate(`/watch-order`);
     closeSearch();
   };
@@ -230,7 +230,7 @@ const NavBar = () => {
               results.map((entry, index) => (
                 <div
                   key={entry.id}
-                  onClick={() => handleResultClick(entry.id)}
+                  onClick={() => handleResultClick()}
                   style={{
                     padding: '1rem 1.5rem', borderBottom: index < results.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none',
                     display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer',
