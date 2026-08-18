@@ -9,7 +9,6 @@ import ScrollToTop from './components/ScrollToTop';
 // Performance Optimization: Lazy load route components for code-splitting
 const Home = lazy(() => import('./pages/Home'));
 const WatchOrder = lazy(() => import('./pages/WatchOrder'));
-const EntryDetail = lazy(() => import('./pages/EntryDetail'));
 
 // Loading Fallback for Suspense
 const PageLoader = () => (
@@ -32,9 +31,6 @@ const AnimatedRoutes = () => {
         } />
         <Route path="watch-order" element={
           <Suspense fallback={<PageLoader />}><WatchOrder /></Suspense>
-        } />
-        <Route path="entry/:id" element={
-          <Suspense fallback={<PageLoader />}><EntryDetail /></Suspense>
         } />
       </Routes>
     </AnimatePresence>
