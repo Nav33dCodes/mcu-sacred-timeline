@@ -61,7 +61,7 @@ export const HOME_CONFIG = {
   ],
   
   // The big cinematic title on the home page
-  heroEyebrow: 'A NEW ERA BEGINS',
+  heroEyebrow: 'HELL ANSWERS TO ME. FOR I AM DOOM!',
   heroTitleLine1: 'AVENGERS',
   heroTitleLine2: 'DOOMSDAY'
 };
