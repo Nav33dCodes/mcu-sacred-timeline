@@ -430,6 +430,7 @@ const Home = () => {
                 src={HOME_CONFIG.posters[0]?.url}
                 alt="Avengers Doomsday Poster"
                 className="overview-poster"
+                loading="lazy"
                 onError={(e) => { e.target.style.display = 'none'; }}
               />
             </div>
@@ -518,6 +519,7 @@ const Home = () => {
                   src={poster.url}
                   alt={poster.title}
                   className="poster-white-img"
+                  loading="lazy"
                   onError={(e) => { e.target.style.display = 'none'; }}
                 />
               </motion.div>
