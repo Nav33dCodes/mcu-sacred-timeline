@@ -47,14 +47,11 @@ const NavBar = () => {
           </a>
         </nav>
 
-        {/* RIGHT — Release Badge */}
+        {/* RIGHT — Minimal Release Badge */}
         <div className="nav-right">
           <div className="nav-release-badge">
             <FaFilm className="nav-badge-icon" />
-            <div className="nav-badge-text">
-              <span className="nav-badge-label">IN THEATERS</span>
-              <span className="nav-badge-date">DEC 18, 2026</span>
-            </div>
+            <span className="nav-badge-date">Dec 18, 2026</span>
           </div>
         </div>
 

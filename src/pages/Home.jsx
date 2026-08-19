@@ -19,15 +19,19 @@ const CountdownTimer = () => {
       const now = new Date();
       const diff = RELEASE_DATE - now;
       if (diff <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        setTimeLeft({ months: 0, days: 0, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
-      setTimeLeft({
-        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((diff / (1000 * 60)) % 60),
-        seconds: Math.floor((diff / 1000) % 60),
-      });
+      const totalSeconds = Math.floor(diff / 1000);
+      const totalMinutes = Math.floor(totalSeconds / 60);
+      const totalHours = Math.floor(totalMinutes / 60);
+      const totalDays = Math.floor(totalHours / 24);
+      const months = Math.floor(totalDays / 30);
+      const days = totalDays % 30;
+      const hours = totalHours % 24;
+      const minutes = totalMinutes % 60;
+      const seconds = totalSeconds % 60;
+      setTimeLeft({ months, days, hours, minutes, seconds });
     };
     calculate();
     const timer = setInterval(calculate, 1000);
@@ -46,6 +50,7 @@ const CountdownTimer = () => {
       <p className="countdown-label">ARRIVES IN THEATERS</p>
       <div className="countdown-grid">
         {[
+          { value: pad(timeLeft.months), label: 'MO' },
           { value: pad(timeLeft.days), label: 'DAYS' },
           { value: pad(timeLeft.hours), label: 'HRS' },
           { value: pad(timeLeft.minutes), label: 'MIN' },
@@ -66,7 +71,7 @@ const CountdownTimer = () => {
               </AnimatePresence>
             </div>
             <span className="countdown-unit">{label}</span>
-            {i < 3 && <span className="countdown-sep">:</span>}
+            {i < 4 && <span className="countdown-sep">:</span>}
           </div>
         ))}
       </div>
@@ -321,11 +326,15 @@ const Home = () => {
         >
           <div className="release-banner-inner">
             <FaCalendarDays className="release-icon" />
-            <span className="release-text">IN THEATERS WORLDWIDE</span>
-            <span className="release-sep">—</span>
-            <span className="release-date">DECEMBER 18, 2026</span>
-            <span className="release-sep">—</span>
-            <span className="release-text">IMAX · DOLBY · 4DX</span>
+            <span className="release-date">December 18, 2026</span>
+            <span className="release-sep">·</span>
+            <span className="release-text">Infinity Vision</span>
+            <span className="release-sep">·</span>
+            <span className="release-text">Dolby Vision</span>
+            <span className="release-sep">·</span>
+            <span className="release-text">ScreenX</span>
+            <span className="release-sep">·</span>
+            <span className="release-text">4DX</span>
           </div>
           <div className="release-banner-glow" />
         </motion.div>
