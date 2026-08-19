@@ -44,7 +44,7 @@ const Home = () => {
               transition={{ duration: 2, ease: "easeInOut" }}
               style={{ 
                 backgroundImage: `url(${HOME_CONFIG.wallpapers[currentWallpaperIndex]}), url(/sacred_timeline_logo.jpg)`,
-                backgroundSize: HOME_CONFIG.wallpapers[currentWallpaperIndex].includes('logo') ? 'contain' : 'cover',
+                backgroundSize: HOME_CONFIG.wallpapers[currentWallpaperIndex].includes('logo') ? '60%' : 'cover',
                 backgroundPosition: HOME_CONFIG.wallpapers[currentWallpaperIndex].includes('logo') ? 'center' : 'top center',
                 margin: HOME_CONFIG.wallpapers[currentWallpaperIndex].includes('logo') ? '10% auto' : '0'
               }} 
