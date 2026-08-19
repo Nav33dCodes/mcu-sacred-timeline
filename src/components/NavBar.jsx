@@ -1,24 +1,17 @@
 import { NavLink, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import './Navbar.css'; // Creating a dedicated CSS file for the flagship navbar
+import { FaFilm } from 'react-icons/fa6';
+import './Navbar.css';
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
 
-  // Handle Scroll to add blur/background when scrolling down
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Force permanent dark mode
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'dark');
   }, []);
@@ -26,26 +19,44 @@ const NavBar = () => {
   return (
     <div className={`enterprise-nav-wrapper ${scrolled ? 'nav-scrolled' : ''}`}>
       <header className="enterprise-nav">
-        
-        {/* Brand Section */}
+
+        {/* LEFT — Brand */}
         <div className="nav-left">
           <Link to="/" className="nav-brand">
             The <span className="text-accent">Sacred</span> Timeline
           </Link>
         </div>
 
-        {/* Center Navigation Links */}
+        {/* CENTER — Navigation Links */}
         <nav className="nav-center">
           <NavLink to="/" end className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
             Home
           </NavLink>
+          <div className="nav-divider" />
           <NavLink to="/watch-order" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
             Watch Order
           </NavLink>
+          <div className="nav-divider" />
+          <a
+            href="https://www.marvel.com/movies/avengers-doomsday"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-link"
+          >
+            Official Site
+          </a>
         </nav>
-        
-        {/* Right Section Empty for centering balance */}
-        <div className="nav-right"></div>
+
+        {/* RIGHT — Release Badge */}
+        <div className="nav-right">
+          <div className="nav-release-badge">
+            <FaFilm className="nav-badge-icon" />
+            <div className="nav-badge-text">
+              <span className="nav-badge-label">IN THEATERS</span>
+              <span className="nav-badge-date">DEC 18, 2026</span>
+            </div>
+          </div>
+        </div>
 
       </header>
     </div>

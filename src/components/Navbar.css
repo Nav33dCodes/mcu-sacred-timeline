@@ -111,12 +111,72 @@
 }
 
 /* --------------------------------------------------------------------------
-   Right Tools (Search & Theme)
+   Nav Divider
+   -------------------------------------------------------------------------- */
+.nav-divider {
+  width: 1px;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  align-self: center;
+}
+
+/* --------------------------------------------------------------------------
+   Right — Release Badge
    -------------------------------------------------------------------------- */
 .nav-right {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 1rem;
+}
+
+.nav-release-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgba(192, 22, 28, 0.35);
+  border-radius: 999px;
+  background: rgba(192, 22, 28, 0.08);
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.nav-release-badge:hover {
+  border-color: rgba(192, 22, 28, 0.7);
+  background: rgba(192, 22, 28, 0.16);
+  box-shadow: 0 0 15px rgba(192, 22, 28, 0.2);
+}
+
+.nav-badge-icon {
+  color: var(--accent-color);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+}
+
+.nav-badge-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 0.15rem;
+}
+
+.nav-badge-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+}
+
+.nav-badge-date {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: white;
+  text-transform: uppercase;
 }
 
 .icon-btn {
