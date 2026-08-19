@@ -6,6 +6,26 @@
   --font-mono: 'Courier New', monospace;
 }
 
+/* Preloader */
+.cinematic-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader-text {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--red, #CC0000);
+  text-transform: uppercase;
+  letter-spacing: 0.4em;
+  text-align: center;
+}
+
 .home-container {
   position: relative;
   background: #000;
@@ -630,10 +650,34 @@
 }
 
 .poster-white-card {
+  position: relative;
   cursor: pointer;
   border-radius: 3px;
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.poster-white-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: all 0.7s ease;
+  pointer-events: none;
+}
+
+.poster-white-card:hover::after {
+  left: 200%;
+  transition: all 0.7s ease-out;
 }
 
 .poster-white-card:hover {

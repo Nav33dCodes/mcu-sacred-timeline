@@ -178,7 +178,16 @@ const Home = () => {
   const [activeTrailerId, setActiveTrailerId] = useState(null);
   const [activePoster, setActivePoster] = useState(null);
   const [currentWallpaperIndex, setCurrentWallpaperIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
   const carouselRef = useRef(null);
+
+  // Preloader Timer
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2800); // 2.8 seconds cinematic intro
+    return () => clearTimeout(timer);
+  }, []);
 
   // Auto-fading background carousel
   useEffect(() => {
@@ -209,6 +218,29 @@ const Home = () => {
       <div className="home-container">
 
         {/* ========================================================= */}
+        {/* CINEMATIC PRELOADER */}
+        {/* ========================================================= */}
+        <AnimatePresence>
+          {isLoading && (
+            <motion.div
+              className="cinematic-preloader"
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2, ease: 'easeInOut' }}
+            >
+              <motion.div
+                className="preloader-text"
+                initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+                animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                transition={{ duration: 1.5, ease: 'easeOut', delay: 0.2 }}
+              >
+                {HOME_CONFIG.heroEyebrow}
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ========================================================= */}
         {/* HERO SECTION */}
         {/* ========================================================= */}
         <section className="hero-section">
@@ -229,6 +261,7 @@ const Home = () => {
                 backgroundImage: `url(${HOME_CONFIG.wallpapers[currentWallpaperIndex]})`,
                 backgroundSize: isLogo ? '60%' : 'cover',
                 backgroundPosition: isLogo ? 'center' : 'top center',
+                backgroundAttachment: 'fixed', /* Instant Parallax Effect */
                 backgroundColor: 'black',
               }}
             />
@@ -361,30 +394,36 @@ const Home = () => {
                 they're set on a deadly collision course and face an existential threat unlike
                 anything they've ever encountered.
               </p>
-              <div className="overview-meta">
-                <div className="meta-col">
+              <motion.div 
+                className="overview-meta"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.4 }}
+              >
+                <motion.div className="meta-col" variants={wordVariants}>
                   <span className="meta-label">PRODUCERS</span>
                   <span className="meta-value">Kevin Feige, Louis D'Esposito, Jonathan Schwartz</span>
-                </div>
-                <div className="meta-col">
+                </motion.div>
+                <motion.div className="meta-col" variants={wordVariants}>
                   <span className="meta-label">DIRECTORS</span>
                   <span className="meta-value">Joe Russo and Anthony Russo</span>
-                </div>
-                <div className="meta-col">
+                </motion.div>
+                <motion.div className="meta-col" variants={wordVariants}>
                   <span className="meta-label">CAST</span>
                   <span className="meta-value">Robert Downey Jr., Chris Evans, Chris Hemsworth, Pedro Pascal, Paul Rudd, Anthony Mackie, Florence Pugh, Vanessa Kirby, Wyatt Russell, Channing Tatum, Simu Liu, Ian McKellen, Tom Hiddleston, James Marsden, Patrick Stewart, Joseph Quinn, Sebastian Stan, David Harbour, Letitia Wright, Lewis Pullman, Kelsey Grammer, Kathryn Newton</span>
-                </div>
-                <div className="meta-col">
+                </motion.div>
+                <motion.div className="meta-col" variants={wordVariants}>
                   <span className="meta-label">RELEASE DATE</span>
                   <span className="meta-value meta-date">December 18, 2026</span>
-                </div>
-                <div className="meta-col countdown-meta">
+                </motion.div>
+                <motion.div className="meta-col countdown-meta" variants={wordVariants}>
                   <span className="meta-label">TIME UNTIL DOOMSDAY</span>
                   <div className="countdown-wrapper-overview">
                     <CountdownTimer />
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
             <div className="overview-right">
               <img
