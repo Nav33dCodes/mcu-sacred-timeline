@@ -233,63 +233,68 @@ const Home = () => {
             ))}
           </div>
 
-          {/* Centered Hero Content */}
-          <div className="hero-wide-content">
+          {/* Bottom Bar — compact, does NOT block the poster */}
+          <div className="hero-bottom-bar">
 
-            {/* Eyebrow */}
-            <motion.p
-              className="hero-eyebrow"
-              initial={{ opacity: 0, letterSpacing: '1em' }}
-              animate={{ opacity: 1, letterSpacing: '0.5em' }}
-              transition={{ duration: 1.2, delay: 0.3, ease: 'easeOut' }}
-            >
-              {HOME_CONFIG.heroEyebrow}
-            </motion.p>
-
-            {/* Title — Staggered Word Reveal */}
-            <motion.div
-              className="hero-title-block"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {[HOME_CONFIG.heroTitleLine1, HOME_CONFIG.heroTitleLine2].map((line, li) => (
-                <div key={li} className="hero-title-line">
-                  {line.split('').map((char, ci) => (
-                    <motion.span
-                      key={`${li}-${ci}`}
-                      variants={wordVariants}
-                      style={{ display: 'inline-block', whiteSpace: char === ' ' ? 'pre' : 'normal' }}
-                    >
-                      {char}
-                    </motion.span>
-                  ))}
-                </div>
-              ))}
-            </motion.div>
-
-            {/* Countdown Timer */}
-            <CountdownTimer />
-
-            {/* CTA Buttons */}
-            <motion.div
-              className="hero-actions"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.8 }}
-            >
-              <Link to="/watch-order" className="btn-primary">
-                <span className="btn-shine" />
-                Enter Timeline
-              </Link>
-              <button
-                className="btn-secondary"
-                onClick={() => document.getElementById('media-section').scrollIntoView({ behavior: 'smooth' })}
+            {/* LEFT — Title */}
+            <div className="hero-bar-left">
+              <motion.p
+                className="hero-eyebrow"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.3 }}
               >
-                <span className="btn-shine" />
-                View Latest Drops
-              </button>
-            </motion.div>
+                {HOME_CONFIG.heroEyebrow}
+              </motion.p>
+
+              <motion.div
+                className="hero-title-block"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+              >
+                {[HOME_CONFIG.heroTitleLine1, HOME_CONFIG.heroTitleLine2].map((line, li) => (
+                  <div key={li} className="hero-title-line">
+                    {line.split('').map((char, ci) => (
+                      <motion.span
+                        key={`${li}-${ci}`}
+                        variants={wordVariants}
+                        style={{ display: 'inline-block', whiteSpace: char === ' ' ? 'pre' : 'normal' }}
+                      >
+                        {char}
+                      </motion.span>
+                    ))}
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* CENTER — Countdown */}
+            <div className="hero-bar-center">
+              <CountdownTimer />
+            </div>
+
+            {/* RIGHT — CTA Buttons */}
+            <div className="hero-bar-right">
+              <motion.div
+                className="hero-actions"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 1.8 }}
+              >
+                <Link to="/watch-order" className="btn-primary">
+                  <span className="btn-shine" />
+                  Enter Timeline
+                </Link>
+                <button
+                  className="btn-secondary"
+                  onClick={() => document.getElementById('media-section').scrollIntoView({ behavior: 'smooth' })}
+                >
+                  <span className="btn-shine" />
+                  View Latest Drops
+                </button>
+              </motion.div>
+            </div>
 
           </div>
 
