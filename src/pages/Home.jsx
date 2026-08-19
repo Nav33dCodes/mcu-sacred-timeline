@@ -351,75 +351,102 @@ const Home = () => {
         </motion.div>
 
         {/* ========================================================= */}
-        {/* LATEST DROPS MEDIA SECTION */}
+        {/* OVERVIEW SECTION — White Marvel.com style                 */}
         {/* ========================================================= */}
-        <section id="media-section" className="media-section">
-          <motion.div
-            className="section-header"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.8 }}
-          >
-            <h2>LATEST DROPS</h2>
-            <div className="section-divider" />
-          </motion.div>
-
-          <div className="media-grid">
-            {HOME_CONFIG.latestDrops.map((drop, index) => (
-              <motion.div
-                key={drop.id}
-                className="media-card"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                onClick={() => setActiveTrailerId(drop.id)}
-              >
-                {/* Trailer Number Badge */}
-                <div className="trailer-badge">TRAILER {String(index + 1).padStart(2, '0')}</div>
-
-                <div className="media-thumbnail">
-                  <img src={`https://img.youtube.com/vi/${drop.id}/maxresdefault.jpg`} alt={drop.title} />
-                  <div className="media-play-overlay">
-                    <div className="play-btn-ring">
-                      <FaPlay className="play-icon" />
-                    </div>
-                  </div>
+        <section className="overview-section">
+          <div className="overview-inner">
+            <div className="overview-left">
+              <h2 className="overview-heading">OVERVIEW</h2>
+              <p className="overview-synopsis">
+                'Avengers: Doomsday' follows beloved heroes from three distinct universes as
+                they're set on a deadly collision course and face an existential threat unlike
+                anything they've ever encountered.
+              </p>
+              <div className="overview-meta">
+                <div className="meta-col">
+                  <span className="meta-label">PRODUCERS</span>
+                  <span className="meta-value">Kevin Feige, Louis D'Esposito, Jonathan Schwartz</span>
                 </div>
-
-                <div className="media-info">
-                  <h3>{drop.title}</h3>
-                  <p>{drop.subtitle}</p>
+                <div className="meta-col">
+                  <span className="meta-label">DIRECTORS</span>
+                  <span className="meta-value">Joe Russo and Anthony Russo</span>
                 </div>
-              </motion.div>
-            ))}
+                <div className="meta-col">
+                  <span className="meta-label">CAST</span>
+                  <span className="meta-value">Robert Downey Jr., Chris Evans, Chris Hemsworth, Pedro Pascal, Paul Rudd, Anthony Mackie, Florence Pugh, Vanessa Kirby, Wyatt Russell, Channing Tatum, Simu Liu, Ian McKellen, Tom Hiddleston, James Marsden, Patrick Stewart, Joseph Quinn, Sebastian Stan, David Harbour, Letitia Wright, Lewis Pullman, Kelsey Grammer, Kathryn Newton</span>
+                </div>
+                <div className="meta-col">
+                  <span className="meta-label">RELEASE DATE</span>
+                  <span className="meta-value meta-date">December 18, 2026</span>
+                </div>
+              </div>
+            </div>
+            <div className="overview-right">
+              <img
+                src={HOME_CONFIG.posters[0]?.url}
+                alt="Avengers Doomsday Poster"
+                className="overview-poster"
+                onError={(e) => { e.target.style.display = 'none'; }}
+              />
+            </div>
           </div>
         </section>
 
         {/* ========================================================= */}
-        {/* OFFICIAL POSTERS GALLERY — 3D Tilt Carousel */}
+        {/* TRAILERS SECTION — White Marvel.com style                 */}
         {/* ========================================================= */}
-        <section className="posters-section">
-          <motion.div
-            className="section-header"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.8 }}
-          >
-            <h2>OFFICIAL POSTERS</h2>
-            <div className="section-divider" />
-          </motion.div>
+        <section id="media-section" className="trailers-section">
+          {HOME_CONFIG.latestDrops.map((drop, index) => (
+            <motion.div
+              key={drop.id}
+              className="trailer-block"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.15 }}
+            >
+              <h2 className="trailer-section-heading">{drop.title.toUpperCase()}</h2>
+              <div
+                className="trailer-embed-wrapper"
+                onClick={() => setActiveTrailerId(drop.id)}
+              >
+                <img
+                  src={`https://img.youtube.com/vi/${drop.id}/maxresdefault.jpg`}
+                  alt={drop.title}
+                  className="trailer-thumb"
+                />
+                <div className="trailer-play-overlay">
+                  <div className="yt-play-btn">
+                    <FaPlay />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </section>
 
-          <div className="posters-carousel" ref={carouselRef}>
+        {/* ========================================================= */}
+        {/* POSTERS SECTION — White Marvel.com style                  */}
+        {/* ========================================================= */}
+        <section className="posters-section-white">
+          <h2 className="section-heading-black">POSTERS</h2>
+          <div className="posters-grid-white">
             {HOME_CONFIG.posters.map((poster, index) => (
               <motion.div
-                key={poster.id}
-                initial={{ opacity: 0, scale: 0.9, x: 40 }}
-                whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                key={poster.id + index}
+                className="poster-white-card"
+                initial={{ opacity: 0, scale: 0.96 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                onClick={() => setActivePoster(poster)}
               >
-                <TiltPosterCard poster={poster} onClick={setActivePoster} />
+                <img
+                  src={poster.url}
+                  alt={poster.title}
+                  className="poster-white-img"
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
               </motion.div>
             ))}
           </div>
