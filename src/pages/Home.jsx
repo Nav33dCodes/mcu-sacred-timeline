@@ -393,7 +393,7 @@ const Home = () => {
         </section>
 
         {/* ========================================================= */}
-        {/* TRAILERS SECTION — White Marvel.com style                 */}
+        {/* TRAILERS SECTION — Real YouTube Embeds                    */}
         {/* ========================================================= */}
         <section id="media-section" className="trailers-section">
           {HOME_CONFIG.latestDrops.map((drop, index) => (
@@ -402,24 +402,19 @@ const Home = () => {
               className="trailer-block"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <h2 className="trailer-section-heading">{drop.title.toUpperCase()}</h2>
-              <div
-                className="trailer-embed-wrapper"
-                onClick={() => setActiveTrailerId(drop.id)}
-              >
-                <img
-                  src={`https://img.youtube.com/vi/${drop.id}/maxresdefault.jpg`}
-                  alt={drop.title}
-                  className="trailer-thumb"
+              <div className="trailer-yt-wrapper">
+                <iframe
+                  src={`https://www.youtube.com/embed/${drop.id}?rel=0&modestbranding=1`}
+                  title={drop.title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  loading="lazy"
                 />
-                <div className="trailer-play-overlay">
-                  <div className="yt-play-btn">
-                    <FaPlay />
-                  </div>
-                </div>
               </div>
             </motion.div>
           ))}

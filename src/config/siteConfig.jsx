@@ -9,9 +9,9 @@ export const HOME_CONFIG = {
 
   // An array of 4K wallpapers. The hero section will automatically crossfade between them!
   wallpapers: [
-    '/assets/doomsday.jpg',
-    '/assets/doomsday-2.jpg',
-    '/assets/doomsday-logo.png'
+    '/assets/avengersdoomsday_teaser-a.jpg',
+    '/assets/avengersdoomsday_teaser-b.jpg',
+    '/assets/avengersdoomsday_teaser-f.png'
   ],
 
   // Logo is now in the background rotation
@@ -51,11 +51,11 @@ export const HOME_CONFIG = {
 
   // Official Theatrical Posters
   posters: [
-    { id: 'poster-1', url: '/assets/doomsday.jpg',   title: 'Official Teaser Poster' },
-    { id: 'poster-2', url: '/assets/doomsday-2.jpg', title: 'Official Teaser Poster' },
-    { id: 'poster-3', url: '/assets/doomsday-3.jpg', title: 'Official Teaser Poster' },
-    { id: 'poster-4', url: '/assets/doomsday-4.jpg', title: 'Official Teaser Poster' },
-    { id: 'poster-5', url: '/assets/doomsday-5.jpg', title: 'Official Teaser Poster' },
+    { id: 'poster-1', url: '/assets/avengersdoomsday_teaser-a.jpg', title: 'Official Teaser Poster' },
+    { id: 'poster-2', url: '/assets/avengersdoomsday_teaser-b.jpg', title: 'Official Teaser Poster' },
+    { id: 'poster-3', url: '/assets/avengersdoomsday_teaser-c.jpg', title: 'Official Teaser Poster' },
+    { id: 'poster-4', url: '/assets/avengersdoomsday_teaser-d.jpg', title: 'Official Teaser Poster' },
+    { id: 'poster-5', url: '/assets/avengersdoomsday_teaser-e.jpg', title: 'Official Teaser Poster' },
  
   ],
   
