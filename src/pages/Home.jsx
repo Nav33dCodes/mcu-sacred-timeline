@@ -285,9 +285,8 @@ const Home = () => {
               </motion.div>
             </div>
 
-            {/* CENTER — Countdown */}
+            {/* CENTER — Empty space now */}
             <div className="hero-bar-center">
-              <CountdownTimer />
             </div>
 
             {/* RIGHT — CTA Buttons */}
@@ -378,6 +377,12 @@ const Home = () => {
                 <div className="meta-col">
                   <span className="meta-label">RELEASE DATE</span>
                   <span className="meta-value meta-date">December 18, 2026</span>
+                </div>
+                <div className="meta-col countdown-meta">
+                  <span className="meta-label">TIME UNTIL DOOMSDAY</span>
+                  <div className="countdown-wrapper-overview">
+                    <CountdownTimer />
+                  </div>
                 </div>
               </div>
             </div>

@@ -252,6 +252,34 @@
   margin-top: 0.2rem;
 }
 
+/* Overview section overrides for the countdown */
+.countdown-meta {
+  grid-column: span 2;
+  margin-top: 0.5rem;
+}
+
+.countdown-wrapper-overview {
+  margin-top: 0.5rem;
+}
+
+.countdown-wrapper-overview .countdown-label {
+  display: none; /* Using meta-label instead */
+}
+
+.countdown-wrapper-overview .countdown-block {
+  background: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  backdrop-filter: none;
+}
+
+.countdown-wrapper-overview .countdown-value {
+  color: #000;
+}
+
+.countdown-wrapper-overview .countdown-sep {
+  color: #ccc;
+}
+
 /* ==========================================================================
    Buttons
    ========================================================================== */

@@ -56,7 +56,7 @@ export const HOME_CONFIG = {
     { id: 'poster-3', url: '/assets/avengersdoomsday_teaser-g.jpg', title: 'Official Teaser Poster' },
     { id: 'poster-4', url: '/assets/avengersdoomsday_teaser-d.jpg', title: 'Official Teaser Poster' },
     { id: 'poster-5', url: '/assets/avengersdoomsday_teaser-e.jpg', title: 'Official Teaser Poster' },
-    { id: 'poster-5', url: '/assets/avengersdoomsday_teaser-f.jpg',   title: 'Official Teaser Poster' },
+    { id: 'poster-5', url: '/assets/avengersdoomsday_teaser-f.jpg', title: 'Official Teaser Poster' },
  
   ],
   
