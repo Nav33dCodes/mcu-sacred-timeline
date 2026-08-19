@@ -11,7 +11,7 @@ export const HOME_CONFIG = {
   wallpapers: [
     '/assets/avengersdoomsday_teaser-a.jpg',
     '/assets/avengersdoomsday_teaser-b.jpg',
-    '/assets/avengersdoomsday_teaser-f.jpg'
+    '/assets/avengersdoomsday_teaser-c.jpg',
   ],
 
   // Logo is now in the background rotation
@@ -56,7 +56,7 @@ export const HOME_CONFIG = {
     { id: 'poster-3', url: '/assets/avengersdoomsday_teaser-c.jpg', title: 'Official Teaser Poster' },
     { id: 'poster-4', url: '/assets/avengersdoomsday_teaser-d.jpg', title: 'Official Teaser Poster' },
     { id: 'poster-5', url: '/assets/avengersdoomsday_teaser-e.jpg', title: 'Official Teaser Poster' },
- 
+ { id: 'poster-5', url: '/assets/avengersdoomsday_teaser-f.jpg', title: 'Official Teaser Poster' },
   ],
   
   // The big cinematic title on the home page
