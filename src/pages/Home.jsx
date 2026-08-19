@@ -22,15 +22,26 @@ const CountdownTimer = () => {
         setTimeLeft({ months: 0, days: 0, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
-      const totalSeconds = Math.floor(diff / 1000);
-      const totalMinutes = Math.floor(totalSeconds / 60);
-      const totalHours = Math.floor(totalMinutes / 60);
-      const totalDays = Math.floor(totalHours / 24);
-      const months = Math.floor(totalDays / 30);
-      const days = totalDays % 30;
-      const hours = totalHours % 24;
-      const minutes = totalMinutes % 60;
-      const seconds = totalSeconds % 60;
+
+      // Accurate calendar month calculation
+      let months = (RELEASE_DATE.getFullYear() - now.getFullYear()) * 12
+        + (RELEASE_DATE.getMonth() - now.getMonth());
+
+      // If day-of-month hasn't passed yet, subtract one month
+      const afterMonths = new Date(now);
+      afterMonths.setMonth(afterMonths.getMonth() + months);
+      if (afterMonths > RELEASE_DATE) months--;
+
+      // Remaining ms after full months
+      const base = new Date(now);
+      base.setMonth(base.getMonth() + months);
+      const rem = RELEASE_DATE - base;
+
+      const days    = Math.floor(rem / (1000 * 60 * 60 * 24));
+      const hours   = Math.floor((rem % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((rem % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((rem % (1000 * 60)) / 1000);
+
       setTimeLeft({ months, days, hours, minutes, seconds });
     };
     calculate();
