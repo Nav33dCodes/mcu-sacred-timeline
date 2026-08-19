@@ -1,36 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* ======================================================
+   MARVEL DOOMSDAY — Black · White · Red
+   ====================================================== */
 :root {
-  /* Dark Base Palette (always dark — MCU Encyclopedia is dark-first) */
-  --bg-primary:    #080808;
-  --bg-secondary:  #101010;
-  --text-main:     #FFFFFF;
-  --text-muted:    rgba(255, 255, 255, 0.60);
-  --text-light:    rgba(255, 255, 255, 0.35);
-  --border-color:  rgba(255, 255, 255, 0.08);
-  --border-light:  rgba(255, 255, 255, 0.05);
-  --accent-color:  #C0161C;
-  --accent-hover:  #E8191F;
-  --accent:        #C0161C;
-  --nav-bg:        rgba(12, 12, 12, 0.85);
+  --black:         #000000;
+  --black-soft:    #0a0a0a;
+  --black-card:    #111111;
+  --black-border:  #1e1e1e;
+  --white:         #FFFFFF;
+  --white-muted:   rgba(255,255,255,0.55);
+  --white-dim:     rgba(255,255,255,0.25);
+  --white-ghost:   rgba(255,255,255,0.07);
+  --red:           #CC0000;
+  --red-bright:    #E8191F;
+  --red-dim:       rgba(204,0,0,0.15);
+  --red-glow:      rgba(204,0,0,0.4);
 
-  --font-heading:  'Playfair Display', serif;
-  --font-body:     'Plus Jakarta Sans', sans-serif;
+  /* Aliases used by components */
+  --bg-primary:    var(--black-soft);
+  --bg-secondary:  var(--black-card);
+  --text-main:     var(--white);
+  --text-muted:    var(--white-muted);
+  --text-light:    var(--white-dim);
+  --border-color:  var(--black-border);
+  --border-light:  rgba(255,255,255,0.05);
+  --accent-color:  var(--red);
+  --accent-hover:  var(--red-bright);
+  --accent:        var(--red);
+  --nav-bg:        rgba(0,0,0,0.85);
+
+  --font-heading:  'Bebas Neue', 'Playfair Display', serif;
+  --font-body:     'Inter', 'Plus Jakarta Sans', sans-serif;
+  --font-mono:     'Courier New', monospace;
   --content-max-width: 860px;
 }
 
 [data-theme="dark"] {
-  --bg-primary:    #080808;
-  --bg-secondary:  #101010;
-  --text-main:     #FFFFFF;
-  --text-muted:    rgba(255, 255, 255, 0.60);
-  --text-light:    rgba(255, 255, 255, 0.35);
-  --border-color:  rgba(255, 255, 255, 0.08);
-  --border-light:  rgba(255, 255, 255, 0.05);
-  --accent-color:  #E8191F;
-  --accent-hover:  #FF2A2A;
-  --accent:        #E8191F;
-  --nav-bg:        rgba(8, 8, 8, 0.9);
+  --bg-primary:    var(--black-soft);
+  --bg-secondary:  var(--black-card);
+  --text-main:     var(--white);
+  --text-muted:    var(--white-muted);
+  --text-light:    var(--white-dim);
+  --border-color:  var(--black-border);
+  --accent-color:  var(--red);
+  --accent-hover:  var(--red-bright);
+  --accent:        var(--red);
+  --nav-bg:        rgba(0,0,0,0.9);
 }
 
 *, *::before, *::after {

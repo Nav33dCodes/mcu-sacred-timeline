@@ -1,16 +1,14 @@
 /* ==========================================================================
-   Home Page — Enterprise Cinematic Doomsday Theme
+   Home Page — Marvel Doomsday: Black · White · Red
    ========================================================================== */
 
-/* Missing font vars */
 :root {
-  --font-mono: 'Courier New', 'Lucida Console', monospace;
-  --font-heading: 'Playfair Display', serif;
+  --font-mono: 'Courier New', monospace;
 }
 
 .home-container {
   position: relative;
-  background: black;
+  background: #000;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -34,7 +32,7 @@
   position: absolute;
   bottom: -10px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(92, 184, 92, 0.8) 0%, rgba(61, 139, 61, 0.3) 100%);
+  background: radial-gradient(circle, rgba(220,30,30,0.9) 0%, rgba(150,0,0,0.3) 100%);
   animation: floatUp linear infinite;
 }
 
@@ -72,14 +70,14 @@
   100% { transform: scale(1.05); }
 }
 
-/* Cinematic vignette gradient */
+/* Vignette — bottom-heavy red tint */
 .hero-overlay-wide {
   position: absolute;
   inset: 0;
   z-index: 2;
   background:
-    linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.95) 100%),
-    radial-gradient(ellipse at 50% 100%, rgba(192,22,28,0.08) 0%, transparent 70%);
+    linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.97) 100%),
+    radial-gradient(ellipse at 50% 100%, rgba(180,0,0,0.10) 0%, transparent 70%);
 }
 
 /* Wallpaper Dot Indicators */
@@ -148,12 +146,11 @@
 /* Eyebrow */
 .hero-eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: #5cb85c;
+  font-size: 0.6rem;
+  color: var(--red, #CC0000);
   text-transform: uppercase;
   margin: 0;
-  letter-spacing: 0.4em;
-  text-shadow: 0 0 20px rgba(92,184,92,0.6);
+  letter-spacing: 0.5em;
 }
 
 /* Title Block */
@@ -166,20 +163,19 @@
 
 .hero-title-line {
   display: flex;
-  font-family: var(--font-mono);
-  font-size: clamp(1.4rem, 3.5vw, 2.6rem);
-  font-weight: 900;
-  letter-spacing: 0.2em;
+  font-family: var(--font-heading, 'Bebas Neue', serif);
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  font-weight: 400;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: white;
-  line-height: 1.1;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  color: #FFFFFF;
+  line-height: 1.05;
 }
 
 .hero-title-line:last-child {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.6);
-  letter-spacing: 0.35em;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.5);
+  letter-spacing: 0.4em;
 }
 
 /* Countdown — more compact in bottom bar */
@@ -224,7 +220,7 @@
   position: absolute;
   bottom: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(92,184,92,0.5), transparent);
+  background: linear-gradient(to right, transparent, #CC0000, transparent);
 }
 
 .countdown-value {
@@ -243,7 +239,7 @@
   font-family: var(--font-mono);
   font-size: 0.5rem;
   letter-spacing: 0.2em;
-  color: rgba(92, 184, 92, 0.8);
+  color: #CC0000;
   margin-top: 0.2rem;
 }
 
@@ -271,17 +267,17 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1.1rem 2.5rem;
+  padding: 0.85rem 2rem;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 3px;
   cursor: pointer;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.3s ease;
   border: none;
 }
 
@@ -289,13 +285,13 @@
   position: absolute;
   top: 0; left: -100%;
   width: 50%; height: 100%;
-  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
   transform: skewX(-20deg);
 }
 
 .btn-primary:hover .btn-shine,
 .btn-secondary:hover .btn-shine {
-  animation: buttonShine 0.8s ease-out;
+  animation: buttonShine 0.7s ease-out;
 }
 
 @keyframes buttonShine {
@@ -303,31 +299,31 @@
   100% { left: 200%; }
 }
 
+/* Solid RED */
 .btn-primary {
-  background: rgba(192, 22, 28, 0.9);
-  color: white;
-  border: 1px solid rgba(255, 60, 60, 0.4);
-  box-shadow: 0 0 30px rgba(192, 22, 28, 0.35);
+  background: #CC0000;
+  color: #FFFFFF;
+  border: 1px solid #CC0000;
 }
 
 .btn-primary:hover {
-  background: rgba(220, 30, 40, 1);
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 15px 40px rgba(192, 22, 28, 0.6), 0 0 20px rgba(255, 60, 60, 0.4);
+  background: #E8191F;
+  border-color: #E8191F;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(200,0,0,0.45);
 }
 
+/* Ghost WHITE */
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.04);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(15px);
+  background: transparent;
+  color: #FFFFFF;
+  border: 1px solid rgba(255,255,255,0.35);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  background: rgba(255,255,255,0.08);
+  border-color: #FFFFFF;
+  transform: translateY(-2px);
 }
 
 /* Scroll Indicator */
@@ -355,17 +351,15 @@
   100% { transform: translateY(200%); }
 }
 
-/* ==========================================================================
-   Release Date Banner
-   ========================================================================== */
+/* Release Banner */
 .release-banner {
   position: relative;
   width: 100%;
-  padding: 1.2rem 2rem;
+  padding: 0.9rem 2rem;
   overflow: hidden;
-  border-top: 1px solid rgba(192, 22, 28, 0.2);
-  border-bottom: 1px solid rgba(192, 22, 28, 0.2);
-  background: rgba(192, 22, 28, 0.04);
+  background: #0d0d0d;
+  border-top: 1px solid #1e1e1e;
+  border-bottom: 1px solid #1e1e1e;
 }
 
 .release-banner-inner {
@@ -374,108 +368,119 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 1.2rem;
   flex-wrap: wrap;
 }
 
 .release-icon {
-  color: var(--accent-color);
-  font-size: 1rem;
+  color: var(--red, #CC0000);
+  font-size: 0.85rem;
 }
 
 .release-text {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.3em;
-  color: rgba(255,255,255,0.5);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.45);
   text-transform: uppercase;
 }
 
 .release-date {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.3em;
-  color: white;
-  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #FFFFFF;
 }
 
 .release-sep {
-  color: rgba(192,22,28,0.5);
-  font-size: 0.9rem;
+  color: rgba(204,0,0,0.6);
+  font-size: 0.7rem;
 }
 
 .release-banner-glow {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 50% 50%, rgba(192,22,28,0.06) 0%, transparent 70%);
-  animation: bannerPulse 4s ease-in-out infinite alternate;
+  display: none;
 }
 
-@keyframes bannerPulse {
-  0%   { opacity: 0.5; }
-  100% { opacity: 1; }
-}
-
-/* ==========================================================================
-   Shared Section Styles
-   ========================================================================== */
-.section-header {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.section-header h2 {
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  letter-spacing: 0.5em;
-  color: rgba(255,255,255,0.4);
-  text-transform: uppercase;
-  margin: 0;
-}
-
-.section-divider {
-  width: 40px;
-  height: 2px;
-  background: var(--accent-color);
-  margin: 1.5rem auto 0;
-  box-shadow: 0 0 10px rgba(192, 22, 28, 0.5);
-}
-
-/* ==========================================================================
-   Media Section (Latest Drops) — Premium Cards
-   ========================================================================== */
+/* Media Section */
 .media-section {
   position: relative;
   z-index: 2;
-  padding: 6rem 2rem;
-  background: var(--bg-primary);
-  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 5rem 2rem;
+  background: #000000;
+  border-top: 1px solid #1e1e1e;
 }
 
-.media-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
+.section-header h2 {
+  font-family: var(--font-heading, 'Bebas Neue', serif);
+  font-size: 0.75rem;
+  letter-spacing: 0.6em;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  margin: 0;
+  font-weight: 400;
 }
 
-/* Premium Trailer Card */
+.section-divider {
+  width: 32px;
+  height: 1px;
+  background: var(--red, #CC0000);
+  margin: 1rem auto 0;
+}
+
+/* Trailer Card */
 .media-card {
   position: relative;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 10px;
+  background: #0d0d0d;
+  border: 1px solid #1e1e1e;
+  border-radius: 6px;
   overflow: hidden;
   cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.3s ease;
 }
 
 .media-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(192, 22, 28, 0.4);
-  box-shadow: 0 25px 60px rgba(0,0,0,0.6), 0 0 30px rgba(192, 22, 28, 0.12);
+  transform: translateY(-6px);
+  border-color: #CC0000;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.7), 0 0 20px rgba(180,0,0,0.12);
+}
+
+.play-btn-ring {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.5);
+  transition: all 0.3s ease;
+  transform: scale(0.9);
+}
+
+.media-card:hover .play-btn-ring {
+  border-color: #CC0000;
+  background: #CC0000;
+  box-shadow: 0 0 25px rgba(180,0,0,0.5);
+  transform: scale(1);
+}
+
+.media-info h3 {
+  font-family: var(--font-heading, 'Bebas Neue', serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #FFFFFF;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.3rem 0;
+}
+
+.media-info p {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.35);
+  margin: 0;
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 /* Trailer Number Badge */
@@ -579,16 +584,30 @@
   text-transform: uppercase;
 }
 
-/* ==========================================================================
-   Posters Section — 3D Tilt Carousel
-   ========================================================================== */
+/* Posters Section */
 .posters-section {
   position: relative;
   z-index: 2;
-  padding: 6rem 0 6rem 2rem;
-  background: var(--bg-secondary);
-  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 5rem 0 5rem 2rem;
+  background: #0a0a0a;
+  border-top: 1px solid #1e1e1e;
   overflow: hidden;
+}
+
+.tilt-poster-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #1e1e1e;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  transition: box-shadow 0.3s ease;
+}
+
+.tilt-poster-card:hover .tilt-poster-inner {
+  border-color: #CC0000;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.8), 0 0 30px rgba(180,0,0,0.18);
 }
 
 .posters-carousel {
@@ -693,15 +712,66 @@
   backdrop-filter: blur(4px);
 }
 
-/* ==========================================================================
-   Professional Enterprise Footer
-   ========================================================================== */
+/* Footer */
 .enterprise-footer {
   position: relative;
   z-index: 2;
-  background: #050505;
-  border-top: 1px solid rgba(255,255,255,0.05);
-  padding: 4rem 2rem 2rem 2rem;
+  background: #000000;
+  border-top: 1px solid #1e1e1e;
+  padding: 4rem 2rem 2.5rem 2rem;
+}
+
+.footer-marvel-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  padding: 0.9rem 2rem;
+  border: 1px solid #1e1e1e;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  background: transparent;
+  text-transform: uppercase;
+}
+
+.footer-marvel-link:hover {
+  background: #CC0000;
+  border-color: #CC0000;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(180,0,0,0.4);
+  text-decoration: none;
+}
+
+.developer-credit {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.18);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.developer-credit span {
+  color: rgba(255,255,255,0.5);
+  font-weight: 700;
+}
+
+.developer-email {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.25);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  transition: color 0.3s ease;
+}
+
+.developer-email:hover {
+  color: #CC0000;
+  text-decoration: none;
 }
 
 .footer-content {
