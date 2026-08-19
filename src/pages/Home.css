@@ -150,7 +150,7 @@
   color: var(--red, #CC0000);
   text-transform: uppercase;
   margin: 0;
-  letter-spacing: 0.5em;
+  letter-spacing: 0.25em;
 }
 
 /* Title Block */
