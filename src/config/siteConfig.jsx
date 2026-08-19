@@ -11,7 +11,7 @@ export const HOME_CONFIG = {
   wallpapers: [
     '/assets/avengersdoomsday_teaser-a.jpg',
     '/assets/avengersdoomsday_teaser-b.jpg',
-    '/assets/avengersdoomsday_teaser-f.png'
+    '/assets/avengersdoomsday_teaser-f.jpg'
   ],
 
   // Logo is now in the background rotation
