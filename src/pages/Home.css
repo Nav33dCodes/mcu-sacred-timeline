@@ -1321,9 +1321,45 @@
 }
 
 /* ==========================================================================
-   Responsive
+   Responsive Breakpoints
    ========================================================================== */
+
+/* Tablet & Smaller Laptops */
+@media (max-width: 992px) {
+  .overview-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .overview-right {
+    position: static;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .overview-section, .trailers-section, .returns-section, .posters-section-white {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Mobile Phones */
 @media (max-width: 768px) {
+  /* Hero Typography & Bottom Bar */
+  .hero-bottom-bar {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+    text-align: center;
+  }
+
+  .hero-bar-left, .hero-bar-center, .hero-bar-right {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
   .hero-title-line {
     font-size: 2.2rem;
     letter-spacing: 0.15em;
@@ -1333,57 +1369,51 @@
     letter-spacing: 0.25em;
   }
 
-  .countdown-block {
-    min-width: 56px;
-    padding: 0.5rem 0.6rem;
-  }
-
-  .countdown-value {
-    font-size: 1.4rem;
-  }
-
-  .countdown-sep {
-    font-size: 1.4rem;
-    padding: 0 0.2rem;
-  }
-
   .hero-actions {
     flex-direction: column;
     gap: 1rem;
-  }
-
-  .btn-primary,
-  .btn-secondary {
     width: 100%;
   }
 
-  .media-grid {
-    grid-template-columns: 1fr;
-    padding: 0 1rem;
+  .btn-primary, .btn-secondary {
+    width: 100%;
   }
 
+  /* Overview Meta */
+  .overview-meta {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+  .countdown-meta {
+    grid-column: 1;
+    margin-top: 1rem;
+  }
+
+  /* Release Banner */
+  .release-banner {
+    padding: 1rem;
+  }
   .release-banner-inner {
     gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
-
   .release-text {
     display: none;
   }
 
-  .tilt-poster-card {
-    flex: 0 0 220px;
-    width: 220px;
+  /* Returns Section */
+  .returns-grid {
+    grid-template-columns: 1fr;
   }
 
-  .footer-marvel-link {
-    width: 100%;
-    justify-content: center;
+  /* Posters */
+  .posters-grid-white {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.8rem;
   }
 
-  .modal-backdrop {
-    padding: 1rem;
-  }
-
+  /* Miscellaneous Modals */
   .close-modal-btn {
     top: 10px;
     right: 10px;
