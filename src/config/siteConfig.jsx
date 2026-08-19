@@ -18,26 +18,45 @@ export const HOME_CONFIG = {
   heroLogoUrl: '',
   latestDrops: [
     {
-      id: 'irVNGjRFZGk', // Extracted from your Official Trailer link
+      id: 'irVNGjRFZGk',
       title: 'Official Trailer',
       subtitle: 'In Theaters December 18',
     },
     {
-      id: 'X1aFkAkFASk', // Extracted from your Special Look link
+      id: 'X1aFkAkFASk',
       title: 'Special Look',
       subtitle: 'In Theaters December 18',
     }
   ],
 
+  // Character Return Clips — embed directly on page
+  characterReturns: [
+    {
+      id: '399Ez7WHK5s',
+      title: 'The Wakandans & Fantastic Four Will Return',
+    },
+    {
+      id: 'kH1XlwHQv9o',
+      title: 'The X-Men Will Return',
+    },
+    {
+      id: '1clWprLC5Ak',
+      title: 'Thor Will Return',
+    },
+    {
+      id: 'UiMg566PREA',
+      title: 'Steve Rogers Will Return',
+    },
+  ],
+
   // Official Theatrical Posters
   posters: [
-    { id: 'poster-1', url: '/assets/doomsday.jpg', title: 'Official Teaser Poster' },
-    { id: 'poster-2', url: '/assets/doomsday-2.jpg', title: 'Character Poster' },
-    { id: 'poster-2', url: '/assets/doomsday-3.jpg', title: 'Character Poster' },
-    { id: 'poster-2', url: '/assets/doomsday-4.jpg', title: 'Character Poster' },
-    { id: 'poster-2', url: '/assets/doomsday-5.jpg', title: 'Character Poster' },
-    // Add more posters here as you download them:
-    // { id: 'poster-2', url: '/assets/another-poster.jpg', title: 'Character Poster' },
+    { id: 'poster-1', url: '/assets/doomsday.jpg',   title: 'Official Teaser Poster' },
+    { id: 'poster-2', url: '/assets/doomsday-2.jpg', title: 'Official Teaser Poster' },
+    { id: 'poster-3', url: '/assets/doomsday-3.jpg', title: 'Official Teaser Poster' },
+    { id: 'poster-4', url: '/assets/doomsday-4.jpg', title: 'Official Teaser Poster' },
+    { id: 'poster-5', url: '/assets/doomsday-5.jpg', title: 'Official Teaser Poster' },
+ 
   ],
   
   // The big cinematic title on the home page

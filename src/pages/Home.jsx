@@ -426,6 +426,40 @@ const Home = () => {
         </section>
 
         {/* ========================================================= */}
+        {/* CHARACTER RETURNS — Embedded YouTube players              */}
+        {/* ========================================================= */}
+        <section className="returns-section">
+          <div className="returns-inner">
+            <h2 className="section-heading-black">THEY WILL RETURN</h2>
+            <p className="returns-subtitle">Character return announcements for Avengers: Doomsday</p>
+            <div className="returns-grid">
+              {HOME_CONFIG.characterReturns.map((clip, index) => (
+                <motion.div
+                  key={clip.id}
+                  className="return-card"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <div className="return-embed">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${clip.id}?rel=0&modestbranding=1`}
+                      title={clip.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      loading="lazy"
+                    />
+                  </div>
+                  <p className="return-title">{clip.title}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================= */}
         {/* POSTERS SECTION — White Marvel.com style                  */}
         {/* ========================================================= */}
         <section className="posters-section-white">

@@ -538,6 +538,78 @@
   border-top: 1px solid #e5e5e5;
 }
 
+/* ==========================================================================
+   CHARACTER RETURNS — Embedded YouTube Grid
+   ========================================================================== */
+.returns-section {
+  background: #f7f7f7;
+  padding: 3rem 2rem;
+  border-top: 1px solid #e5e5e5;
+}
+
+.returns-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.returns-subtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 0.82rem;
+  color: #888;
+  margin-bottom: 2rem;
+  margin-top: -0.8rem;
+  letter-spacing: 0.02em;
+}
+
+.returns-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.return-card {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.return-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+  border-color: #CC0000;
+}
+
+.return-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  background: #000;
+}
+
+.return-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.return-title {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #111;
+  padding: 0.8rem 1rem;
+  margin: 0;
+  background: #fff;
+  border-top: 2px solid #CC0000;
+}
+
 .section-heading-black {
   font-family: var(--font-heading, 'Bebas Neue', serif);
   font-size: 1.4rem;
